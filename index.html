@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bo Deloison — CV Interactif (Pro, sobre)</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <!-- Leaflet (carte) -->
+  <!-- Leaflet (cartes mini) -->
   <link rel="preload" as="style" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" onload="this.onload=null;this.rel='stylesheet'">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" onerror="window.__NO_MAP__=true"></script>
   <style>
-    :root{
-      --bg:#ffffff; --text:#111113; --muted:#555a61; --line:#e7e8ea; --card:#f7f8fa; --chip:#eeeeee; --shadow:0 8px 24px rgba(17,17,19,.06);
-    }
+    :root{ --bg:#ffffff; --text:#111113; --muted:#555a61; --line:#e7e8ea; --card:#f7f8fa; --chip:#eeeeee; --shadow:0 8px 24px rgba(17,17,19,.06); }
     *{box-sizing:border-box}
     html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
     a{color:var(--text);text-underline-offset:2px}
@@ -25,7 +23,6 @@
     .avatar-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow);width:min(680px,100%);text-align:center}
     .photo{width:220px;height:220px;border-radius:50%;object-fit:cover;border:3px solid var(--text);box-shadow:var(--shadow);display:block;margin:0 auto 14px}
     .about{color:var(--muted);max-width:560px;margin:0 auto}
-
     .cta-row{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
     .btn{background:var(--text);color:#fff;padding:10px 14px;border-radius:12px;font-weight:700;border:1px solid var(--text);cursor:pointer;text-decoration:none}
     .btn.secondary{background:#fff;color:var(--text);text-decoration:none}
@@ -35,30 +32,38 @@
     .ico-title{width:20px;height:20px;display:inline-block}
     .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
 
-    .map-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
-    #map{height:420px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
-    .xp-detail{min-height:420px;display:flex;flex-direction:column;gap:10px}
-    .xp-panel{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
-    .xp-panel h3{margin:10px 0 8px;font-size:16px}
-    .xp-panel p{margin:6px 0 0;color:var(--muted)}
-    .xp-ul{margin:10px 0 0 18px;color:var(--muted)}
-    .xp-logo{height:64px;display:block;margin:4px 0 8px}
-    .hint{color:var(--muted);font-size:13px;margin-top:6px}
+    /* Nouveau layout Stages + Globe décoratif */
+    .stage-grid{display:grid;grid-template-columns:320px 1fr;gap:18px;align-items:start}
+    @media (max-width: 920px){ .stage-grid{grid-template-columns:1fr} }
+
+    /* Globe minimaliste qui tourne */
+    .globe{width:280px;height:280px;border-radius:50%;position:relative;background:radial-gradient(ellipse at 30% 30%, #eef1f5, #f9fafb);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;margin:auto}
+    .globe .wire{position:absolute;inset:0;background:
+      repeating-linear-gradient(to right, rgba(0,0,0,.08) 0 1px, transparent 1px 18px),
+      repeating-linear-gradient(to bottom, rgba(0,0,0,.08) 0 1px, transparent 1px 18px);
+      animation: spin 24s linear infinite;}
+    @keyframes spin{from{background-position:0 0, 0 0} to{background-position:-360px 0, 0 0}}
+    .pin{position:absolute;width:10px;height:10px;background:#111;border-radius:50%;box-shadow:0 0 0 3px rgba(17,17,19,.1)}
+    /* positions approximatives (projection équidistante) */
+    .pin.lis{top:42%;left:46%}
+    .pin.bcn{top:41%;left:48%}
+    .pin.bali{top:58%;left:82%}
+
+    .stage-card{display:grid;grid-template-columns:1fr 220px;gap:14px}
+    .stage-card h3{margin:4px 0 6px;font-size:16px}
+    .stage-card p{margin:6px 0 0;color:var(--muted)}
+    .logo{height:50px}
+    .mini-map{height:180px;border-radius:12px;border:1px solid var(--line);overflow:hidden}
 
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .list{margin:0;padding-left:18px;color:var(--muted)}
-
-    /* Skill rows with icons */
     .row{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;color:var(--muted)}
     .ico{width:18px;height:18px;flex:0 0 18px}
 
     .chips{display:flex;flex-wrap:wrap;gap:8px}
     .chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:13px}
 
+    .list{margin:0;padding-left:18px;color:var(--muted)}
     footer{margin:36px 0 8px;color:var(--muted);text-align:center;font-size:13px}
-    @media (max-width: 920px){ .map-grid,.grid-2{grid-template-columns:1fr} #map{height:340px} .xp-detail{min-height:auto} }
-
-    .pin-emoji{font-size:26px;line-height:26px;}
   </style>
 </head>
 <body>
@@ -80,29 +85,62 @@
       </div>
     </section>
 
+    <!-- STAGES + GLOBE -->
     <section id="experiences">
       <h2 class="section-title">
-        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11l9-8 9 8v9H3v-9z" stroke="#111"/><path d="M9 21V9h6v12" stroke="#111"/></svg>
-        Expériences — Carte du monde
+        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16M4 12h16M4 19h16" stroke="#111"/></svg>
+        Stages (affichés directement)
       </h2>
-      <div class="map-grid">
-        <div class="card">
-          <div id="map"></div>
-          <div class="hint">Clique sur Lisbonne, Barcelone ou Bali. Le descriptif s’ouvre à droite, avec le logo en tête.</div>
+      <div class="stage-grid">
+        <!-- Globe décoratif -->
+        <div class="card" style="padding:16px;display:flex;align-items:center">
+          <div class="globe">
+            <div class="wire"></div>
+            <div class="pin lis" title="Lisbonne"></div>
+            <div class="pin bcn" title="Barcelone"></div>
+            <div class="pin bali" title="Bali"></div>
+          </div>
         </div>
-        <div class="xp-detail">
-          <div class="xp-panel" id="xp-panel">
-            <img class="xp-logo" src="./assets/ESME_Sudria.png" alt="logo"/>
-            <h3>Choisis une localisation</h3>
-            <p>Lisbonne 🇵🇹 — Barcelone 🇪🇸 — Bali 🇮🇩</p>
+
+        <!-- Cartes & descriptifs -->
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div class="card stage-card">
+            <div>
+              <img class="logo" src="./assets/Papernest.png" alt="Papernest"/>
+              <h3>Barcelone — Junior Data & SEO Project Manager</h3>
+              <p>Stage de fin d’études (Juin – Déc 2025). KPIs marketing & SEO, automatisations et dashboards pour les équipes Growth.</p>
+              <ul class="list">
+                <li>Dashboards unifiés (Chart.js, Looker Studio)</li>
+                <li>Data pipeline (Python/SQL, BigQuery/MySQL), QA & alertes</li>
+                <li>Audits SEO on‑page/off‑page, suivi ranking</li>
+                <li>Scrapers de veille & reporting auto</li>
+              </ul>
+            </div>
+            <div id="map-bcn" class="mini-map"></div>
+          </div>
+
+          <div class="card stage-card">
+            <div>
+              <img class="logo" src="./assets/8inAsia.png" alt="8 IN ASIA"/>
+              <h3>Bali — Data & Marketing Digital</h3>
+              <p>Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète.</p>
+              <ul class="list">
+                <li>Audit sémantique & calendrier éditorial</li>
+                <li>Conception UX des pages clés, A/B tests légers</li>
+                <li>+10k abonnés en 3 mois (social)</li>
+                <li>Suivi analytics & reporting hebdo</li>
+              </ul>
+            </div>
+            <div id="map-bali" class="mini-map"></div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- COMPÉTENCES -->
     <section>
       <h2 class="section-title">
-        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16M4 12h16M4 19h16" stroke="#111"/></svg>
+        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16M4 12h10M4 19h6" stroke="#111"/></svg>
         Compétences
       </h2>
       <div class="grid-2">
@@ -123,6 +161,7 @@
       </div>
     </section>
 
+    <!-- PROJETS D'ÉCOLE -->
     <section>
       <h2 class="section-title">
         <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18v14H3z" stroke="#111"/><path d="M7 9h10M7 13h6" stroke="#111"/></svg>
@@ -142,6 +181,35 @@
       </div>
     </section>
 
+    <!-- ÉCOLES / FORMATION -->
+    <section>
+      <h2 class="section-title">
+        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l8-4 8 4v11H4V6z" stroke="#111"/></svg>
+        Écoles / Formation
+      </h2>
+      <div class="grid-2">
+        <div class="card stage-card" style="grid-template-columns:1fr 120px">
+          <div>
+            <img class="logo" src="./assets/ESME_Sudria.png" alt="ESME"/>
+            <h3>ESME Sudria — Ingénierie</h3>
+            <p>Classe prépa intégrée + Cycle ingénieur. Parcours Big Data & IA, projets data/ML, gestion de projet.</p>
+            <div class="chips"><span class="chip">Python</span><span class="chip">ML</span><span class="chip">SQL</span></div>
+          </div>
+          <div></div>
+        </div>
+        <div class="card stage-card" style="grid-template-columns:1fr 120px">
+          <div>
+            <img class="logo" src="./assets/IST_Lisbon.png" alt="IST Lisbon"/>
+            <h3>IST Lisbonne — Exchange Program</h3>
+            <p>Semestre à l’Instituto Superior Técnico (2023–2024). Projets data/compute, équipes internationales.</p>
+            <div class="chips"><span class="chip">C++</span><span class="chip">Compute</span><span class="chip">Teamwork</span></div>
+          </div>
+          <div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANGUES -->
     <section>
       <h2 class="section-title">
         <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a8 8 0 100 16 8 8 0 000-16z" stroke="#111"/><path d="M2 10h20" stroke="#111"/></svg>
@@ -156,6 +224,7 @@
       </div>
     </section>
 
+    <!-- JOBS ÉTUDIANTS -->
     <section>
       <h2 class="section-title">
         <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16v12H4z" stroke="#111"/><path d="M4 10h16" stroke="#111"/></svg>
@@ -179,6 +248,7 @@
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section>
       <h2 class="section-title">
         <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18v14H3z" stroke="#111"/><path d="M7 9h10M7 13h10" stroke="#111"/></svg>
@@ -205,80 +275,21 @@
       ist: './assets/IST_Lisbon.png'
     };
 
-    // Données expériences (décrites davantage)
-    const XP = {
-      lis: {
-        coords: [38.736946, -9.142685],
-        title: 'Lisbonne — Exchange Program (IST)',
-        body: `Semestre d’échange (Sep 2023 – Fév 2024) à l’<strong>Instituto Superior Técnico</strong> : projets data/compute, travail en équipes internationales, présentation de résultats à l’oral.`,
-        logo: LOGOS.ist,
-        bullets: [
-          'Cours: Electronic & Computing',
-          'Travaux de groupe, mise en prod légère',
-          'Découverte écosystème portugais'
-        ]
-      },
-      bcn: {
-        coords: [41.3874, 2.1686],
-        title: 'Barcelone — Junior Data & SEO Project Manager (Papernest)',
-        body: `Stage de fin d’études (Juin – Déc 2025). Pilotage de KPIs marketing & SEO, automatisations et dashboards pour les équipes Growth.`,
-        logo: LOGOS.papernest,
-        bullets: [
-          'Dashboards unifiés (Chart.js, Looker Studio)',
-          'Data pipeline (Python/SQL, BigQuery/MySQL), QA & alertes',
-          'Audits SEO on‑page/off‑page, suivi ranking',
-          'Automatisation de reportings & scrapers de veille'
-        ]
-      },
-      bali: {
-        coords: [-8.409518, 115.188919],
-        title: 'Bali — Data & Marketing Digital (8 IN ASIA)',
-        body: `Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète.`,
-        logo: LOGOS.asia8,
-        bullets: [
-          'Audit sémantique & calendrier éditorial',
-          'Conception UX des pages clés, A/B tests légers',
-          '+10k abonnés en 3 mois (social)',
-          'Suivi analytics & reporting hebdo'
-        ]
-      }
-    };
-
-    function renderXp(key){
-      const panel = document.getElementById('xp-panel');
-      if(!XP[key]) return;
-      const {title, body, logo, bullets=[]} = XP[key];
-      const lis = bullets.map(b=>`<li>${b}</li>`).join('');
-      panel.innerHTML = `
-        <img class=\"xp-logo\" src=\"${logo}\" alt=\"logo\"/>
-        <h3>${title}</h3>
-        <p>${body}</p>
-        ${bullets.length?`<ul class='xp-ul'>${lis}</ul>`:''}
-      `;
-    }
-
-    function pinIcon(){
-      return L.divIcon({ html: '<div class="pin-emoji">📍</div>', className: 'pin', iconSize: [26,26], iconAnchor: [13,26] });
-    }
-
-    function initMap(){
+    function smallMap(id, coords){
       if(window.__NO_MAP__ || typeof L==='undefined'){
-        const el = document.getElementById('map');
-        el.outerHTML = '<div class="card" style="padding:16px">Carte non chargée (réseau). Les expériences restent accessibles ci‑dessous.</div>';
+        const el = document.getElementById(id);
+        if(el) el.outerHTML = '<div class="mini-map" style="display:flex;align-items:center;justify-content:center;background:#fff">Carte non chargée</div>';
         return;
       }
-      const map = L.map('map', { scrollWheelZoom:false, worldCopyJump:true, minZoom:2 });
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }).addTo(map);
-      const coords = Object.values(XP).map(x=>x.coords);
-      const bounds = L.latLngBounds(coords);
-      map.fitBounds(bounds, { padding:[30,30], maxZoom:4 }); // ✅ montre les 3 épingles d’emblée
-      for (const key of Object.keys(XP)){
-        const m = L.marker(XP[key].coords, { icon: pinIcon() }).addTo(map);
-        m.on('click', ()=> renderXp(key));
-      }
+      const m = L.map(id, { zoomControl:false, dragging:false, scrollWheelZoom:false, doubleClickZoom:false, boxZoom:false, keyboard:false }).setView(coords, 5);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }).addTo(m);
+      L.marker(coords).addTo(m);
     }
 
-    window.addEventListener('load', initMap);
+    window.addEventListener('load', ()=>{
+      smallMap('map-bcn', [41.3874, 2.1686]);
+      smallMap('map-bali', [-8.409518, 115.188919]);
+    });
   </script>
 </body>
 </html>
