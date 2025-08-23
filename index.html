@@ -31,22 +31,29 @@
     .btn.secondary{background:#fff;color:var(--text);text-decoration:none}
 
     section{margin:28px 0}
-    .section-title{font-size:18px;font-weight:800;margin:0 0 12px}
+    .section-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;margin:0 0 12px}
+    .ico-title{width:20px;height:20px;display:inline-block}
     .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
 
     .map-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
-    #map{height:420px;border-radius:14px;overflow:hidden;border:1px solid var(--line)} /* en couleur */
+    #map{height:420px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
     .xp-detail{min-height:420px;display:flex;flex-direction:column;gap:10px}
     .xp-panel{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
     .xp-panel h3{margin:10px 0 8px;font-size:16px}
     .xp-panel p{margin:6px 0 0;color:var(--muted)}
     .xp-ul{margin:10px 0 0 18px;color:var(--muted)}
-    .xp-logo{height:56px;display:block;margin:2px 0 6px}
+    .xp-logo{height:64px;display:block;margin:4px 0 8px}
     .hint{color:var(--muted);font-size:13px;margin-top:6px}
 
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .list{margin:0;padding-left:18px;color:var(--muted)}
-    .chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:13px;margin-right:8px;margin-bottom:8px;display:inline-block}
+
+    /* Skill rows with icons */
+    .row{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;color:var(--muted)}
+    .ico{width:18px;height:18px;flex:0 0 18px}
+
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:13px}
 
     footer{margin:36px 0 8px;color:var(--muted);text-align:center;font-size:13px}
     @media (max-width: 920px){ .map-grid,.grid-2{grid-template-columns:1fr} #map{height:340px} .xp-detail{min-height:auto} }
@@ -74,7 +81,10 @@
     </section>
 
     <section id="experiences">
-      <h2 class="section-title">Expériences — Carte du monde</h2>
+      <h2 class="section-title">
+        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11l9-8 9 8v9H3v-9z" stroke="#111"/><path d="M9 21V9h6v12" stroke="#111"/></svg>
+        Expériences — Carte du monde
+      </h2>
       <div class="map-grid">
         <div class="card">
           <div id="map"></div>
@@ -91,46 +101,71 @@
     </section>
 
     <section>
-      <h2 class="section-title">Compétences & Apports</h2>
+      <h2 class="section-title">
+        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16M4 12h16M4 19h16" stroke="#111"/></svg>
+        Compétences
+      </h2>
       <div class="grid-2">
         <div class="card">
-          <h3>Compétences techniques</h3>
-          <ul class="list">
-            <li>Python (pandas, requests), SQL (BigQuery/MySQL), JavaScript</li>
-            <li>Data viz : Chart.js, Looker Studio</li>
-            <li>SEO : audit, maillage, rédaction orientée intent, suivi & reporting</li>
-            <li>Web : WordPress/Divi, intégration front légère</li>
-            <li>Automatisation & scrapers (veille, reporting, enrichissement)</li>
-          </ul>
+          <h3>Tech</h3>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16" stroke="#111"/></svg>Python (pandas), JavaScript</div>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 9h8v6H8z" stroke="#111"/></svg>SQL (BigQuery/MySQL)</div>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M3 17h18M6 17V7m6 10V4m6 13v-8" stroke="#111"/></svg>Data viz : Chart.js, Looker Studio</div>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 7h16M4 12h12M4 17h10" stroke="#111"/></svg>WordPress/Divi, intégration front</div>
         </div>
         <div class="card">
-          <h3>Apports</h3>
-          <ul class="list">
-            <li>Dashboard clairs pour décideurs (KPI marketing/SEO unifiés)</li>
-            <li>Process d’industrialisation : QA des données, alertes, documentation</li>
-            <li>Orientation ROI : tests rapides, suivi d’impact, priorisation</li>
-            <li>Communication simple & visuelle, bilingue fr/angl.</li>
-          </ul>
+          <h3>SEO & Automatisation</h3>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 12h16M12 4v16" stroke="#111"/></svg>Audit on/off‑page, maillage, contenu orienté intent</div>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M6 6h12v12H6z" stroke="#111"/><path d="M6 12h12" stroke="#111"/></svg>Scrapers & reporting auto (veille, KPI)</div>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 20l4-4 3 3 9-9" stroke="#111"/></svg>QA data, alertes, doc courte et claire</div>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L5 20l2-7L2 9h7z" stroke="#111"/></svg>Orientation ROI, tests rapides</div>
         </div>
       </div>
     </section>
 
     <section>
-      <h2 class="section-title">Langues</h2>
-      <div class="card">
-        <span class="chip">Français — natif</span>
-        <span class="chip">Anglais — avancé</span>
-        <span class="chip">Espagnol — intermédiaire</span>
+      <h2 class="section-title">
+        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18v14H3z" stroke="#111"/><path d="M7 9h10M7 13h6" stroke="#111"/></svg>
+        Projets d’école
+      </h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Recommandation d’articles scientifiques (NLP/RAG)</h3>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#111"/></svg>Indexation vectorielle + recherche sémantique, évaluation offline (MRR/Recall)</div>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h6" stroke="#111"/></svg>Pipeline propre : ingestion, embeddings, API de requête</div>
+        </div>
+        <div class="card">
+          <h3>JO Paris 2024 — Prédiction de médailles</h3>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 17h16M8 17V7m6 10V4m6 13v-8" stroke="#111"/></svg>Features historiques, XGBoost/Random Forest, CV</div>
+          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2l3 6H9l3-6zM6 22l6-4 6 4" stroke="#111"/></svg>Dashboard de restitution pour non‑tech</div>
+        </div>
       </div>
     </section>
 
     <section>
-      <h2 class="section-title">Jobs étudiants</h2>
+      <h2 class="section-title">
+        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a8 8 0 100 16 8 8 0 000-16z" stroke="#111"/><path d="M2 10h20" stroke="#111"/></svg>
+        Langues
+      </h2>
+      <div class="card">
+        <div class="chips">
+          <span class="chip">🇫🇷 Français — natif</span>
+          <span class="chip">🇬🇧 Anglais — avancé</span>
+          <span class="chip">🇪🇸 Espagnol — intermédiaire</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">
+        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16v12H4z" stroke="#111"/><path d="M4 10h16" stroke="#111"/></svg>
+        Jobs étudiants
+      </h2>
       <div class="card">
         <ul class="list">
           <li><strong>Hôtesse événementielle — Roland‑Garros 2025 (BNP Paribas)</strong> · via Florence Doré · Paris · mai–juin 2025</li>
           <li><strong>Serveuse extra — Hôtel Fort Saint‑Laurent</strong> · Lyon · avr–mai 2025</li>
-          <li><strong>Hôtesse — GL events</strong> (via agence Profil) · Lyon · déc 2021–juin 2024
+          <li><strong>Hôtesse — GL events</strong> (via agence Profil) · Lyon · déc 2021–juin 2024
             <ul class="list">
               <li>Hôtesse VIP <strong>LOU Rugby</strong> (match‑day)</li>
               <li>Hôtesse Skybox <strong>Chanel</strong> — The Amundi Evian Championship (07/2022)</li>
@@ -138,14 +173,17 @@
             </ul>
           </li>
           <li><strong>Figurante TV</strong> — Agence CASSANDRA · Paris · jan–juin 2024</li>
-          <li><strong>Professeure particulière (maths/physique)</strong> — Superprof · Lyon · sept 2021–juin 2022</li>
-          <li><strong>Emploi étudiant</strong> — McDonald’s · Caluire‑et‑Cuire · juil–août 2021</li>
+          <li><strong>Professeure particulière (maths/physique)</strong> — Superprof · Lyon · sept 2021–juin 2022</li>
+          <li><strong>Emploi étudiant</strong> — McDonald’s · Caluire‑et‑Cuire · juil–août 2021</li>
         </ul>
       </div>
     </section>
 
     <section>
-      <h2 class="section-title">Contact</h2>
+      <h2 class="section-title">
+        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18v14H3z" stroke="#111"/><path d="M7 9h10M7 13h10" stroke="#111"/></svg>
+        Contact
+      </h2>
       <div class="card">
         <p><strong>Email :</strong> <a href="mailto:bodeloison8@gmail.com" style="text-decoration:none">bodeloison8@gmail.com</a> · <strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer" style="text-decoration:none">/in/bodeloison</a></p>
       </div>
@@ -212,7 +250,7 @@
       const {title, body, logo, bullets=[]} = XP[key];
       const lis = bullets.map(b=>`<li>${b}</li>`).join('');
       panel.innerHTML = `
-        <img class="xp-logo" src="${logo}" alt="logo"/>
+        <img class=\"xp-logo\" src=\"${logo}\" alt=\"logo\"/>
         <h3>${title}</h3>
         <p>${body}</p>
         ${bullets.length?`<ul class='xp-ul'>${lis}</ul>`:''}
@@ -229,8 +267,11 @@
         el.outerHTML = '<div class="card" style="padding:16px">Carte non chargée (réseau). Les expériences restent accessibles ci‑dessous.</div>';
         return;
       }
-      const map = L.map('map', { scrollWheelZoom:false }).setView([25, 10], 2);
+      const map = L.map('map', { scrollWheelZoom:false, worldCopyJump:true, minZoom:2 });
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }).addTo(map);
+      const coords = Object.values(XP).map(x=>x.coords);
+      const bounds = L.latLngBounds(coords);
+      map.fitBounds(bounds, { padding:[30,30], maxZoom:4 }); // ✅ montre les 3 épingles d’emblée
       for (const key of Object.keys(XP)){
         const m = L.marker(XP[key].coords, { icon: pinIcon() }).addTo(map);
         m.on('click', ()=> renderXp(key));
@@ -241,4 +282,3 @@
   </script>
 </body>
 </html>
-
