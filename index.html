@@ -29,40 +29,25 @@
 
     section{margin:28px 0}
     .section-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;margin:0 0 12px}
-    .ico-title{width:20px;height:20px;display:inline-block}
     .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
 
-    /* Nouveau layout Stages + Globe décoratif */
-    .stage-grid{display:grid;grid-template-columns:320px 1fr;gap:18px;align-items:start}
-    @media (max-width: 920px){ .stage-grid{grid-template-columns:1fr} }
-
-    /* Globe minimaliste qui tourne */
-    .globe{width:280px;height:280px;border-radius:50%;position:relative;background:radial-gradient(ellipse at 30% 30%, #eef1f5, #f9fafb);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;margin:auto}
-    .globe .wire{position:absolute;inset:0;background:
-      repeating-linear-gradient(to right, rgba(0,0,0,.08) 0 1px, transparent 1px 18px),
-      repeating-linear-gradient(to bottom, rgba(0,0,0,.08) 0 1px, transparent 1px 18px);
-      animation: spin 24s linear infinite;}
-    @keyframes spin{from{background-position:0 0, 0 0} to{background-position:-360px 0, 0 0}}
-    .pin{position:absolute;width:10px;height:10px;background:#111;border-radius:50%;box-shadow:0 0 0 3px rgba(17,17,19,.1)}
-    /* positions approximatives (projection équidistante) */
-    .pin.lis{top:42%;left:46%}
-    .pin.bcn{top:41%;left:48%}
-    .pin.bali{top:58%;left:82%}
-
-    .stage-card{display:grid;grid-template-columns:1fr 220px;gap:14px}
+    /* Stages : cartes + descriptifs (sans globe) */
+    .stage-stack{display:flex;flex-direction:column;gap:18px}
+    .stage-card{display:grid;grid-template-columns:1fr 240px;gap:14px}
     .stage-card h3{margin:4px 0 6px;font-size:16px}
     .stage-card p{margin:6px 0 0;color:var(--muted)}
     .logo{height:50px}
-    .mini-map{height:180px;border-radius:12px;border:1px solid var(--line);overflow:hidden}
+    .mini-map{height:200px;border-radius:12px;border:1px solid var(--line);overflow:hidden}
+    @media (max-width: 920px){ .stage-card{grid-template-columns:1fr} .mini-map{height:180px} }
 
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .row{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;color:var(--muted)}
-    .ico{width:18px;height:18px;flex:0 0 18px}
+    @media (max-width: 920px){ .grid-2{grid-template-columns:1fr} }
 
+    /* Listes simples (plus d'icônes dans Compétences) */
+    .list{margin:0;padding-left:18px;color:var(--muted)}
     .chips{display:flex;flex-wrap:wrap;gap:8px}
     .chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:13px}
 
-    .list{margin:0;padding-left:18px;color:var(--muted)}
     footer{margin:36px 0 8px;color:var(--muted);text-align:center;font-size:13px}
   </style>
 </head>
@@ -80,113 +65,97 @@
         <div class="cta-row">
           <a class="btn" href="mailto:bodeloison8@gmail.com">Me contacter</a>
           <a class="btn secondary" href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="btn secondary" href="#experiences">Expériences</a>
+          <a class="btn secondary" href="#stages">Expériences</a>
         </div>
       </div>
     </section>
 
-    <!-- STAGES + GLOBE -->
-    <section id="experiences">
-      <h2 class="section-title">
-        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16M4 12h16M4 19h16" stroke="#111"/></svg>
-        Stages (affichés directement)
-      </h2>
-      <div class="stage-grid">
-        <!-- Globe décoratif -->
-        <div class="card" style="padding:16px;display:flex;align-items:center">
-          <div class="globe">
-            <div class="wire"></div>
-            <div class="pin lis" title="Lisbonne"></div>
-            <div class="pin bcn" title="Barcelone"></div>
-            <div class="pin bali" title="Bali"></div>
+    <!-- STAGES : cartes visibles directement -->
+    <section id="stages">
+      <h2 class="section-title">Stages</h2>
+      <div class="stage-stack">
+        <div class="card stage-card">
+          <div>
+            <img class="logo" src="./assets/Papernest.png" alt="Papernest"/>
+            <h3>Barcelone — Junior Data & SEO Project Manager</h3>
+            <p>Stage de fin d’études (Juin – Déc 2025). KPIs marketing & SEO, automatisations et dashboards pour les équipes Growth.</p>
+            <ul class="list">
+              <li>Dashboards unifiés (Chart.js, Looker Studio)</li>
+              <li>Data pipeline (Python/SQL, BigQuery/MySQL), QA & alertes</li>
+              <li>Audits SEO on‑page/off‑page, suivi ranking</li>
+              <li>Scrapers de veille & reporting auto</li>
+            </ul>
           </div>
+          <div id="map-bcn" class="mini-map"></div>
         </div>
 
-        <!-- Cartes & descriptifs -->
-        <div style="display:flex;flex-direction:column;gap:18px">
-          <div class="card stage-card">
-            <div>
-              <img class="logo" src="./assets/Papernest.png" alt="Papernest"/>
-              <h3>Barcelone — Junior Data & SEO Project Manager</h3>
-              <p>Stage de fin d’études (Juin – Déc 2025). KPIs marketing & SEO, automatisations et dashboards pour les équipes Growth.</p>
-              <ul class="list">
-                <li>Dashboards unifiés (Chart.js, Looker Studio)</li>
-                <li>Data pipeline (Python/SQL, BigQuery/MySQL), QA & alertes</li>
-                <li>Audits SEO on‑page/off‑page, suivi ranking</li>
-                <li>Scrapers de veille & reporting auto</li>
-              </ul>
-            </div>
-            <div id="map-bcn" class="mini-map"></div>
+        <div class="card stage-card">
+          <div>
+            <img class="logo" src="./assets/8inAsia.png" alt="8 IN ASIA"/>
+            <h3>Bali — Data & Marketing Digital</h3>
+            <p>Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète.</p>
+            <ul class="list">
+              <li>Audit sémantique & calendrier éditorial</li>
+              <li>Conception UX des pages clés, A/B tests légers</li>
+              <li>+10k abonnés en 3 mois (social)</li>
+              <li>Suivi analytics & reporting hebdo</li>
+            </ul>
           </div>
-
-          <div class="card stage-card">
-            <div>
-              <img class="logo" src="./assets/8inAsia.png" alt="8 IN ASIA"/>
-              <h3>Bali — Data & Marketing Digital</h3>
-              <p>Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète.</p>
-              <ul class="list">
-                <li>Audit sémantique & calendrier éditorial</li>
-                <li>Conception UX des pages clés, A/B tests légers</li>
-                <li>+10k abonnés en 3 mois (social)</li>
-                <li>Suivi analytics & reporting hebdo</li>
-              </ul>
-            </div>
-            <div id="map-bali" class="mini-map"></div>
-          </div>
+          <div id="map-bali" class="mini-map"></div>
         </div>
       </div>
     </section>
 
-    <!-- COMPÉTENCES -->
+    <!-- COMPÉTENCES (sans illustrations) -->
     <section>
-      <h2 class="section-title">
-        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16M4 12h10M4 19h6" stroke="#111"/></svg>
-        Compétences
-      </h2>
+      <h2 class="section-title">Compétences</h2>
       <div class="grid-2">
         <div class="card">
           <h3>Tech</h3>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16" stroke="#111"/></svg>Python (pandas), JavaScript</div>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 9h8v6H8z" stroke="#111"/></svg>SQL (BigQuery/MySQL)</div>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M3 17h18M6 17V7m6 10V4m6 13v-8" stroke="#111"/></svg>Data viz : Chart.js, Looker Studio</div>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 7h16M4 12h12M4 17h10" stroke="#111"/></svg>WordPress/Divi, intégration front</div>
+          <ul class="list">
+            <li>Python (pandas), JavaScript</li>
+            <li>SQL (BigQuery/MySQL)</li>
+            <li>Data viz : Chart.js, Looker Studio</li>
+            <li>WordPress/Divi, intégration front</li>
+          </ul>
         </div>
         <div class="card">
           <h3>SEO & Automatisation</h3>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 12h16M12 4v16" stroke="#111"/></svg>Audit on/off‑page, maillage, contenu orienté intent</div>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M6 6h12v12H6z" stroke="#111"/><path d="M6 12h12" stroke="#111"/></svg>Scrapers & reporting auto (veille, KPI)</div>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 20l4-4 3 3 9-9" stroke="#111"/></svg>QA data, alertes, doc courte et claire</div>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L5 20l2-7L2 9h7z" stroke="#111"/></svg>Orientation ROI, tests rapides</div>
+          <ul class="list">
+            <li>Audit on/off‑page, maillage, contenu orienté intent</li>
+            <li>Scrapers & reporting auto (veille, KPI)</li>
+            <li>QA data, alertes, doc courte et claire</li>
+            <li>Orientation ROI, tests rapides</li>
+          </ul>
         </div>
       </div>
     </section>
 
     <!-- PROJETS D'ÉCOLE -->
     <section>
-      <h2 class="section-title">
-        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18v14H3z" stroke="#111"/><path d="M7 9h10M7 13h6" stroke="#111"/></svg>
-        Projets d’école
-      </h2>
+      <h2 class="section-title">Projets d’école</h2>
       <div class="grid-2">
         <div class="card">
-          <h3>Recommandation d’articles scientifiques (NLP/RAG)</h3>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#111"/></svg>Indexation vectorielle + recherche sémantique, évaluation offline (MRR/Recall)</div>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h6" stroke="#111"/></svg>Pipeline propre : ingestion, embeddings, API de requête</div>
+          <h3>Recommandation d’articles (NLP/RAG)</h3>
+          <ul class="list">
+            <li>Indexation vectorielle + recherche sémantique</li>
+            <li>Pipeline ingestion → embeddings → API</li>
+            <li>Évaluation offline (MRR/Recall)</li>
+          </ul>
         </div>
         <div class="card">
           <h3>JO Paris 2024 — Prédiction de médailles</h3>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M4 17h16M8 17V7m6 10V4m6 13v-8" stroke="#111"/></svg>Features historiques, XGBoost/Random Forest, CV</div>
-          <div class="row"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2l3 6H9l3-6zM6 22l6-4 6 4" stroke="#111"/></svg>Dashboard de restitution pour non‑tech</div>
+          <ul class="list">
+            <li>Features historiques, XGBoost/Random Forest, CV</li>
+            <li>Dashboard de restitution pour non‑tech</li>
+          </ul>
         </div>
       </div>
     </section>
 
     <!-- ÉCOLES / FORMATION -->
     <section>
-      <h2 class="section-title">
-        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l8-4 8 4v11H4V6z" stroke="#111"/></svg>
-        Écoles / Formation
-      </h2>
+      <h2 class="section-title">Écoles / Formation</h2>
       <div class="grid-2">
         <div class="card stage-card" style="grid-template-columns:1fr 120px">
           <div>
@@ -211,10 +180,7 @@
 
     <!-- LANGUES -->
     <section>
-      <h2 class="section-title">
-        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a8 8 0 100 16 8 8 0 000-16z" stroke="#111"/><path d="M2 10h20" stroke="#111"/></svg>
-        Langues
-      </h2>
+      <h2 class="section-title">Langues</h2>
       <div class="card">
         <div class="chips">
           <span class="chip">🇫🇷 Français — natif</span>
@@ -226,10 +192,7 @@
 
     <!-- JOBS ÉTUDIANTS -->
     <section>
-      <h2 class="section-title">
-        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16v12H4z" stroke="#111"/><path d="M4 10h16" stroke="#111"/></svg>
-        Jobs étudiants
-      </h2>
+      <h2 class="section-title">Jobs étudiants</h2>
       <div class="card">
         <ul class="list">
           <li><strong>Hôtesse événementielle — Roland‑Garros 2025 (BNP Paribas)</strong> · via Florence Doré · Paris · mai–juin 2025</li>
@@ -250,10 +213,7 @@
 
     <!-- CONTACT -->
     <section>
-      <h2 class="section-title">
-        <svg class="ico-title" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18v14H3z" stroke="#111"/><path d="M7 9h10M7 13h10" stroke="#111"/></svg>
-        Contact
-      </h2>
+      <h2 class="section-title">Contact</h2>
       <div class="card">
         <p><strong>Email :</strong> <a href="mailto:bodeloison8@gmail.com" style="text-decoration:none">bodeloison8@gmail.com</a> · <strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer" style="text-decoration:none">/in/bodeloison</a></p>
       </div>
@@ -267,14 +227,7 @@
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    // Logos depuis /assets
-    const LOGOS = {
-      papernest: './assets/Papernest.png',
-      asia8: './assets/8inAsia.png',
-      esme: './assets/ESME_Sudria.png',
-      ist: './assets/IST_Lisbon.png'
-    };
-
+    // Cartes mini (Leaflet)
     function smallMap(id, coords){
       if(window.__NO_MAP__ || typeof L==='undefined'){
         const el = document.getElementById(id);
