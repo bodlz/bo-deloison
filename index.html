@@ -10,18 +10,11 @@
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" onerror="window.__NO_MAP__=true"></script>
   <style>
     :root{
-      --bg:#ffffff;
-      --text:#111113;
-      --muted:#555a61;
-      --line:#e7e8ea;
-      --card:#f7f8fa;
-      --accent:#111113;
-      --chip:#eeeeee;
-      --shadow:0 8px 24px rgba(17,17,19,.06);
+      --bg:#ffffff; --text:#111113; --muted:#555a61; --line:#e7e8ea; --card:#f7f8fa; --chip:#eeeeee; --shadow:0 8px 24px rgba(17,17,19,.06);
     }
     *{box-sizing:border-box}
     html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-    a{color:var(--text);text-decoration:underline;text-underline-offset:2px}
+    a{color:var(--text);text-underline-offset:2px}
     .wrap{max-width:1120px;margin:0 auto;padding:28px}
 
     header{display:flex;flex-direction:column;align-items:center;gap:18px;margin-bottom:24px}
@@ -34,8 +27,8 @@
     .about{color:var(--muted);max-width:560px;margin:0 auto}
 
     .cta-row{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
-    .btn{background:var(--text);color:#fff;padding:10px 14px;border-radius:12px;font-weight:700;border:none;cursor:pointer}
-    .btn.secondary{background:#fff;color:var(--text);border:1px solid var(--text)}
+    .btn{background:var(--text);color:#fff;padding:10px 14px;border-radius:12px;font-weight:700;border:1px solid var(--text);cursor:pointer;text-decoration:none}
+    .btn.secondary{background:#fff;color:var(--text);text-decoration:none}
 
     section{margin:28px 0}
     .section-title{font-size:18px;font-weight:800;margin:0 0 12px}
@@ -44,20 +37,20 @@
     .map-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
     #map{height:420px;border-radius:14px;overflow:hidden;border:1px solid var(--line)} /* en couleur */
     .xp-detail{min-height:420px;display:flex;flex-direction:column;gap:10px}
-    .xp-panel{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
-    .xp-panel h3{margin:0 0 6px;font-size:16px}
+    .xp-panel{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+    .xp-panel h3{margin:10px 0 8px;font-size:16px}
     .xp-panel p{margin:6px 0 0;color:var(--muted)}
-    .xp-logo{height:28px;vertical-align:middle;margin-left:8px}
+    .xp-ul{margin:10px 0 0 18px;color:var(--muted)}
+    .xp-logo{height:56px;display:block;margin:2px 0 6px}
     .hint{color:var(--muted);font-size:13px;margin-top:6px}
 
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:13px}
+    .list{margin:0;padding-left:18px;color:var(--muted)}
+    .chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:13px;margin-right:8px;margin-bottom:8px;display:inline-block}
 
     footer{margin:36px 0 8px;color:var(--muted);text-align:center;font-size:13px}
     @media (max-width: 920px){ .map-grid,.grid-2{grid-template-columns:1fr} #map{height:340px} .xp-detail{min-height:auto} }
 
-    /* Marqueur emoji 📍 */
     .pin-emoji{font-size:26px;line-height:26px;}
   </style>
 </head>
@@ -70,7 +63,6 @@
 
     <section class="hero">
       <div class="avatar-card">
-        <!-- Remplace src ci-dessous par le chemin de TA photo dans ton repo (ex: ./assets/bo.jpg) -->
         <img class="photo" src="./assets/photo_Bo.png" alt="Bo Deloison" />
         <p class="about">Curieuse, rigoureuse et créative, j’aime transformer les données en décisions concrètes. J’allie <strong>analyse</strong>, <strong>SEO</strong> et <strong>visualisation</strong> pour livrer des résultats mesurables. Premiers défis recherchés à partir de <strong>janvier 2026</strong>.</p>
         <div class="cta-row">
@@ -86,42 +78,76 @@
       <div class="map-grid">
         <div class="card">
           <div id="map"></div>
-          <div class="hint">Clique sur Lisbonne, Barcelone ou Bali. Le descriptif s’ouvre à droite, avec le logo de l’entreprise.</div>
+          <div class="hint">Clique sur Lisbonne, Barcelone ou Bali. Le descriptif s’ouvre à droite, avec le logo en tête.</div>
         </div>
         <div class="xp-detail">
           <div class="xp-panel" id="xp-panel">
+            <img class="xp-logo" src="./assets/ESME_Sudria.png" alt="logo"/>
             <h3>Choisis une localisation</h3>
             <p>Lisbonne 🇵🇹 — Barcelone 🇪🇸 — Bali 🇮🇩</p>
-          </div>
-          <div class="card">
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">JavaScript</span><span class="chip">BigQuery</span><span class="chip">SEO</span><span class="chip">Chart.js</span><span class="chip">Looker Studio</span><span class="chip">WordPress/Divi</span>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
     <section>
-      <h2 class="section-title">Formation & Projets</h2>
+      <h2 class="section-title">Compétences & Apports</h2>
       <div class="grid-2">
         <div class="card">
-          <h3>Formation</h3>
-          <p><strong>ESME Sudria</strong> — Master Big Data & Marketing Digital (2020–2025) · <em>Moyenne 14,5/20 (Top 25%)</em></p>
-          <p><strong>Instituto Superior Técnico</strong> — Exchange Program (Sep 2023 – Fév 2024)</p>
+          <h3>Compétences techniques</h3>
+          <ul class="list">
+            <li>Python (pandas, requests), SQL (BigQuery/MySQL), JavaScript</li>
+            <li>Data viz : Chart.js, Looker Studio</li>
+            <li>SEO : audit, maillage, rédaction orientée intent, suivi & reporting</li>
+            <li>Web : WordPress/Divi, intégration front légère</li>
+            <li>Automatisation & scrapers (veille, reporting, enrichissement)</li>
+          </ul>
         </div>
         <div class="card">
-          <h3>Projets</h3>
-          <p><strong>Système de recommandation scientifique</strong> (NLP/LLM RAG). Pipeline vectoriel + fine‑tuning léger.</p>
-          <p><strong>JO Paris 2024</strong> — Prédiction de médailles (XGBoost/Random Forest) à partir de données historiques.</p>
+          <h3>Apports</h3>
+          <ul class="list">
+            <li>Dashboard clairs pour décideurs (KPI marketing/SEO unifiés)</li>
+            <li>Process d’industrialisation : QA des données, alertes, documentation</li>
+            <li>Orientation ROI : tests rapides, suivi d’impact, priorisation</li>
+            <li>Communication simple & visuelle, bilingue fr/angl.</li>
+          </ul>
         </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Langues</h2>
+      <div class="card">
+        <span class="chip">Français — natif</span>
+        <span class="chip">Anglais — avancé</span>
+        <span class="chip">Espagnol — intermédiaire</span>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Jobs étudiants</h2>
+      <div class="card">
+        <ul class="list">
+          <li><strong>Hôtesse événementielle — Roland‑Garros 2025 (BNP Paribas)</strong> · via Florence Doré · Paris · mai–juin 2025</li>
+          <li><strong>Serveuse extra — Hôtel Fort Saint‑Laurent</strong> · Lyon · avr–mai 2025</li>
+          <li><strong>Hôtesse — GL events</strong> (via agence Profil) · Lyon · déc 2021–juin 2024
+            <ul class="list">
+              <li>Hôtesse VIP <strong>LOU Rugby</strong> (match‑day)</li>
+              <li>Hôtesse Skybox <strong>Chanel</strong> — The Amundi Evian Championship (07/2022)</li>
+              <li>Hôtesse <strong>OL</strong> (événements stade)</li>
+            </ul>
+          </li>
+          <li><strong>Figurante TV</strong> — Agence CASSANDRA · Paris · jan–juin 2024</li>
+          <li><strong>Professeure particulière (maths/physique)</strong> — Superprof · Lyon · sept 2021–juin 2022</li>
+          <li><strong>Emploi étudiant</strong> — McDonald’s · Caluire‑et‑Cuire · juil–août 2021</li>
+        </ul>
       </div>
     </section>
 
     <section>
       <h2 class="section-title">Contact</h2>
       <div class="card">
-        <p><strong>Email :</strong> <a href="mailto:bodeloison8@gmail.com">bodeloison8@gmail.com</a> · <strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer">/in/bodeloison</a></p>
+        <p><strong>Email :</strong> <a href="mailto:bodeloison8@gmail.com" style="text-decoration:none">bodeloison8@gmail.com</a> · <strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer" style="text-decoration:none">/in/bodeloison</a></p>
       </div>
     </section>
 
@@ -133,7 +159,7 @@
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    // Logos (base64 fournis)
+    // Logos depuis /assets
     const LOGOS = {
       papernest: './assets/Papernest.png',
       asia8: './assets/8inAsia.png',
@@ -141,41 +167,62 @@
       ist: './assets/IST_Lisbon.png'
     };
 
-    // Données expériences (texte issu du CV)
+    // Données expériences (décrites davantage)
     const XP = {
       lis: {
         coords: [38.736946, -9.142685],
         title: 'Lisbonne — Exchange Program (IST)',
-        body: `Instituto Superior Técnico — Master Electronic & Computing. Semestre d’échange (Sep 2023 – Fév 2024).`,
-        logo: LOGOS.ist
+        body: `Semestre d’échange (Sep 2023 – Fév 2024) à l’<strong>Instituto Superior Técnico</strong> : projets data/compute, travail en équipes internationales, présentation de résultats à l’oral.`,
+        logo: LOGOS.ist,
+        bullets: [
+          'Cours: Electronic & Computing',
+          'Travaux de groupe, mise en prod légère',
+          'Découverte écosystème portugais'
+        ]
       },
       bcn: {
         coords: [41.3874, 2.1686],
         title: 'Barcelone — Junior Data & SEO Project Manager (Papernest)',
-        body: `Stage de fin d’études (Juin – Déc 2025). KPIs marketing, dashboards, automatisation (Python/SQL/JS), Chart.js temps réel, audit SEO, BigQuery/MySQL.`,
-        logo: LOGOS.papernest
+        body: `Stage de fin d’études (Juin – Déc 2025). Pilotage de KPIs marketing & SEO, automatisations et dashboards pour les équipes Growth.`,
+        logo: LOGOS.papernest,
+        bullets: [
+          'Dashboards unifiés (Chart.js, Looker Studio)',
+          'Data pipeline (Python/SQL, BigQuery/MySQL), QA & alertes',
+          'Audits SEO on‑page/off‑page, suivi ranking',
+          'Automatisation de reportings & scrapers de veille'
+        ]
       },
       bali: {
         coords: [-8.409518, 115.188919],
         title: 'Bali — Data & Marketing Digital (8 IN ASIA)',
-        body: `Stage (Juin – Août 2024). Conception voyageabali.com (UX + WordPress/Divi), stratégie SEO A→Z, benchmark, étude sémantique, +10k abonnés en 3 mois.`,
-        logo: LOGOS.asia8
+        body: `Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète.`,
+        logo: LOGOS.asia8,
+        bullets: [
+          'Audit sémantique & calendrier éditorial',
+          'Conception UX des pages clés, A/B tests légers',
+          '+10k abonnés en 3 mois (social)',
+          'Suivi analytics & reporting hebdo'
+        ]
       }
     };
 
     function renderXp(key){
       const panel = document.getElementById('xp-panel');
       if(!XP[key]) return;
-      const {title, body, logo} = XP[key];
-      panel.innerHTML = `<h3>${title}<img class="xp-logo" src="${logo}" alt="logo"/></h3><p>${body}</p>`;
+      const {title, body, logo, bullets=[]} = XP[key];
+      const lis = bullets.map(b=>`<li>${b}</li>`).join('');
+      panel.innerHTML = `
+        <img class="xp-logo" src="${logo}" alt="logo"/>
+        <h3>${title}</h3>
+        <p>${body}</p>
+        ${bullets.length?`<ul class='xp-ul'>${lis}</ul>`:''}
+      `;
     }
 
-    // Marqueur emoji 📍
     function pinIcon(){
       return L.divIcon({ html: '<div class="pin-emoji">📍</div>', className: 'pin', iconSize: [26,26], iconAnchor: [13,26] });
     }
 
-    // Carte
     function initMap(){
       if(window.__NO_MAP__ || typeof L==='undefined'){
         const el = document.getElementById('map');
