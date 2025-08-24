@@ -13,7 +13,7 @@
     *{box-sizing:border-box}
     html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
     a{color:var(--text);text-underline-offset:2px}
-    .wrap{max-width:1120px;margin:0 auto;padding:28px} 
+    .wrap{max-width:1120px;margin:0 auto;padding:28px}
 
     .topbar{display:flex;justify-content:flex-end;align-items:center;margin-bottom:6px}
     .lang-toggle{display:flex;align-items:center;gap:10px}
@@ -76,13 +76,13 @@
 
     <header>
       <div class="name">Bo Deloison</div>
-      <div id="subtitle" class="subtitle">Ingénieure Big Data & Marketing Digital — Profil data/marketing, visualisation & automatisation des données ! </div>
+      <div id="subtitle" class="subtitle">Ingénieure Big Data & Marketing Digital — Profil data/SEO, visualisation & automatisation</div>
     </header>
 
     <section class="hero">
       <div class="avatar-card">
         <img class="photo" src="./assets/photo_Bo.png" alt="Bo Deloison" />
-        <p id="about" class="about">Curieuse, rigoureuse et créative, j’aime transformer les données en décisions concrètes. J’allie <strong>analyse</strong>, <strong>automatisation</strong> et <strong>visualisation</strong> pour livrer des résultats mesurables. Je recherche mon premier job à partir de <strong>janvier 2026</strong>.</p>
+        <p id="about" class="about">Curieuse, rigoureuse et créative, j’aime transformer les données en décisions concrètes. J’allie <strong>analyse</strong>, <strong>SEO</strong> et <strong>visualisation</strong> pour livrer des résultats mesurables. Premiers défis recherchés à partir de <strong>janvier 2026</strong>.</p>
         <div class="cta-row">
           <a id="btn-contact" class="btn" href="mailto:bodeloison8@gmail.com">Me contacter</a>
           <a id="btn-linkedin" class="btn secondary" href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -91,7 +91,7 @@
       </div>
     </section>
 
-    <!-- STAGES  -->
+    <!-- STAGES : cartes visibles directement -->
     <section id="stages">
       <h2 id="stages-title" class="section-title">Stages</h2>
       <div class="stage-stack">
@@ -101,10 +101,10 @@
             <h3 id="bcn-title">Barcelone — Junior Data & SEO Project Manager</h3>
             <p id="bcn-desc">Stage de fin d’études (Juin – Déc 2025). KPIs marketing & SEO, automatisations et dashboards pour les équipes Growth.</p>
             <ul id="bcn-bullets" class="list">
-              <li>Dashboards interactifs (Chart.js, Github, APIs)</li>
-              <li>Data pipeline (Python/SQL, BigQuery/MySQL)</li>
-              <li>Audits SEO on‑page, suivi ranking, prise de décisions</li>
-              <li>Scrapers de veille & reporting automatisés</li>
+              <li>Dashboards unifiés (Chart.js, Looker Studio)</li>
+              <li>Data pipeline (Python/SQL, BigQuery/MySQL), QA & alertes</li>
+              <li>Audits SEO on‑page/off‑page, suivi ranking</li>
+              <li>Scrapers de veille & reporting auto</li>
             </ul>
           </div>
           <div id="map-bcn" class="mini-map"></div>
@@ -120,7 +120,6 @@
               <li>Conception UX des pages clés, A/B tests légers</li>
               <li>+10k abonnés en 3 mois (social)</li>
               <li>Suivi analytics & reporting hebdo</li>
-              <li>Accompagnement des voyageurs pour les activités (conseils, réservations, logistique)</li>
             </ul>
           </div>
           <div id="map-bali" class="mini-map"></div>
@@ -282,22 +281,22 @@
           'Scrapers de veille & reporting auto'
         ],
         bali_title: 'Bali — Data & Marketing Digital',
-        bali_desc: 'Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète.',
+        bali_desc: 'Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète. Expérience sans doute la plus formatrice et bienveillante de ma vie : j’y ai énormément appris (autonomie, sens du service, adaptation).',
         bali_bullets: [
-          'Audit sémantique & calendrier éditorial',
-          'Conception UX des pages clés, A/B tests légers',
-          '+10k abonnés en 3 mois (social)',
-          'Suivi analytics & reporting hebdo',
-          'Accompagnement des voyageurs pour les activités (conseils, réservations, logistique)'
+          'Semantic audit & editorial calendar',
+          'UX for key pages, light A/B tests',
+          '+10k followers in 3 months (social)',
+          'Analytics tracking & weekly reporting',
+          'Supporting travelers with activities (advice, bookings, logistics)'
         ],
-        skills_title: 'Compétences', tech_heading: 'Tech', seo_heading: 'SEO & Automatisation',
-        tech_list: [ 'Python (pandas), JavaScript', 'SQL (BigQuery/MySQL)', 'Data viz : Chart.js, Looker Studio', 'WordPress/Divi, intégration front' ],
+        skills_title: 'Compétences', tech_heading: 'Compétences techniques', seo_heading: 'SEO & Automatisation',
+        tech_list: [ 'Langages : Python, SQL, C (notions), Git', 'Data visualisation : Power BI, Looker Studio', 'Outils marketing : Google Analytics, Google Tag Manager', 'Machine Learning : scikit‑learn, XGBoost, LightGBM, TensorFlow, PyTorch', 'NLP / LLM : Hugging Face, LangChain, GPT‑4, Prompt Engineering', 'Data Engineering : Spark, Kafka, Hadoop', 'Bases de données : PostgreSQL, MongoDB, BigQuery', 'Cloud & outils : notions AWS' ],
         seo_list: [ 'Audit on/off‑page, maillage, contenu orienté intent', 'Scrapers & reporting auto (veille, KPI)', 'QA data, alertes, doc courte et claire', 'Orientation ROI, tests rapides' ],
         projects_title: 'Projets d’école',
         proj1_title: 'Recommandation d’articles (NLP/RAG)',
-        proj1_list: [ 'Indexation vectorielle + recherche sémantique', 'Pipeline ingestion → embeddings → API', 'Évaluation offline (MRR/Recall)' ],
+        proj1_list: [ 'Développement d’un chatbot basé sur un LLM et un système RAG hybride pour des recommandations pertinentes', 'Optimisation du pipeline RAG pour la recherche d’information à l’aide de modèles d’embeddings et de recherche vectorielle', 'Entraînement et fine‑tuning du LLM pour améliorer la pertinence et l’alignement des réponses aux besoins utilisateurs' ],
         proj2_title: 'JO Paris 2024 — Prédiction de médailles',
-        proj2_list: [ 'Features historiques, XGBoost/Random Forest, CV', 'Dashboard de restitution pour non‑tech' ],
+        proj2_list: [ 'Collecte, nettoyage et stockage des performances sportives passées', 'Développement de modèles prédictifs en Python', 'Rapports automatisés et tableaux de bord interactifs pour l’analyse des tendances' ],
         edu_title: 'Écoles / Formation',
         esme_title: 'ESME Sudria — Ingénierie',
         esme_desc: 'Classe prépa intégrée + Cycle ingénieur. Parcours Big Data & IA, projets data/ML, gestion de projet.',
@@ -338,22 +337,21 @@
           'Watch scrapers & automated reporting'
         ],
         bali_title: 'Bali — Data & Digital Marketing',
-        bali_desc: 'Internship (Jun–Aug 2024). Launched and optimized <em>voyageabali.com</em> (WordPress/Divi) with a full SEO strategy.',
+        bali_desc: 'Internship (Jun–Aug 2024). Launched and optimized <em>voyageabali.com</em> (WordPress/Divi) with a full SEO strategy. Without a doubt the most formative and kind experience of my life — I learned a great deal (autonomy, customer care, adaptability).',
         bali_bullets: [
           'Semantic audit & editorial calendar',
           'UX for key pages, light A/B tests',
           '+10k followers in 3 months (social)',
-          'Analytics tracking & weekly reporting',
-          'Supporting travelers with activities (advice, bookings, logistics)'
+          'Analytics tracking & weekly reporting'
         ],
-        skills_title: 'Skills', tech_heading: 'Tech', seo_heading: 'SEO & Automation',
-        tech_list: [ 'Python (pandas), JavaScript', 'SQL (BigQuery/MySQL)', 'Data viz: Chart.js, Looker Studio', 'WordPress/Divi, light front‑end' ],
+        skills_title: 'Skills', tech_heading: 'Technical skills', seo_heading: 'SEO & Automation',
+        tech_list: [ 'Languages: Python, SQL, C (basics), Git', 'Data visualization: Power BI, Looker Studio', 'Marketing tools: Google Analytics, Google Tag Manager', 'Machine Learning: scikit‑learn, XGBoost, LightGBM, TensorFlow, PyTorch', 'NLP / LLM: Hugging Face, LangChain, GPT‑4, Prompt Engineering', 'Data Engineering: Spark, Kafka, Hadoop', 'Databases: PostgreSQL, MongoDB, BigQuery', 'Cloud & tooling: basic AWS' ],
         seo_list: [ 'On/Off‑page audits, internal linking, intent‑driven content', 'Scrapers & automated KPI reporting', 'Data QA, alerting, concise docs', 'ROI mindset, fast testing' ],
         projects_title: 'School projects',
         proj1_title: 'Scientific article recommendation (NLP/RAG)',
-        proj1_list: [ 'Vector indexing + semantic search', 'Clean pipeline: ingestion → embeddings → API', 'Offline evaluation (MRR/Recall)' ],
+        proj1_list: [ 'Built a chatbot on top of an LLM with a hybrid RAG system for relevant recommendations', 'Optimised the RAG pipeline for information retrieval using embedding models and vector search', 'Trained and fine‑tuned the LLM to improve response relevance and alignment with user needs' ],
         proj2_title: 'Paris 2024 Olympics — Medal prediction',
-        proj2_list: [ 'Historical features, XGBoost/Random Forest, CV', 'Executive dashboard for non‑technical users' ],
+        proj2_list: [ 'Collected, cleaned and stored historical sports performance data', 'Developed predictive models in Python', 'Automated reports and interactive dashboards for trend analysis' ],
         edu_title: 'Education',
         esme_title: 'ESME Sudria — Engineering',
         esme_desc: 'Integrated prep + engineering cycle. Big Data & AI track, data/ML projects, project management.',
@@ -440,4 +438,5 @@
   </script>
 </body>
 </html>
+
 
