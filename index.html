@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bo Deloison — CV Interactif (Pro, sobre)</title>
+  <title>Bo Deloison — CV Interactif (FR/EN)</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <!-- Leaflet (cartes mini) -->
   <link rel="preload" as="style" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -15,7 +15,18 @@
     a{color:var(--text);text-underline-offset:2px}
     .wrap{max-width:1120px;margin:0 auto;padding:28px}
 
-    header{display:flex;flex-direction:column;align-items:center;gap:18px;margin-bottom:24px}
+    .topbar{display:flex;justify-content:flex-end;align-items:center;margin-bottom:6px}
+    .lang-toggle{display:flex;align-items:center;gap:10px}
+    .lang-label{font-size:12px;color:var(--muted);font-weight:700}
+    /* iOS-like switch */
+    .switch{position:relative;display:inline-block;width:56px;height:32px}
+    .switch input{opacity:0;width:0;height:0}
+    .slider{position:absolute;inset:0;cursor:pointer;background:#e9eaec;border:1px solid #cfd1d4;border-radius:999px;transition:.25s}
+    .slider:before{content:"";position:absolute;height:26px;width:26px;left:3px;top:2px;background:#fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.12);transition:.25s}
+    .switch input:checked + .slider{background:#111}
+    .switch input:checked + .slider:before{transform:translateX(24px)}
+
+    header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:18px}
     .name{font-size:30px;font-weight:800;letter-spacing:.2px;text-align:center}
     .subtitle{color:var(--muted);text-align:center}
 
@@ -28,7 +39,7 @@
     .btn.secondary{background:#fff;color:var(--text);text-decoration:none}
 
     section{margin:28px 0}
-    .section-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;margin:0 0 12px}
+    .section-title{font-size:18px;font-weight:800;margin:0 0 12px}
     .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
 
     /* Stages : cartes + descriptifs (sans globe) */
@@ -43,7 +54,6 @@
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     @media (max-width: 920px){ .grid-2{grid-template-columns:1fr} }
 
-    /* Listes simples (plus d'icônes dans Compétences) */
     .list{margin:0;padding-left:18px;color:var(--muted)}
     .chips{display:flex;flex-wrap:wrap;gap:8px}
     .chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:13px}
@@ -53,33 +63,44 @@
 </head>
 <body>
   <div class="wrap">
+    <div class="topbar">
+      <div class="lang-toggle" aria-label="Language switch" role="group">
+        <span class="lang-label">FR</span>
+        <label class="switch" title="FR / EN">
+          <input id="langSwitch" type="checkbox" aria-label="language" />
+          <span class="slider"></span>
+        </label>
+        <span class="lang-label">EN</span>
+      </div>
+    </div>
+
     <header>
       <div class="name">Bo Deloison</div>
-      <div class="subtitle">Ingénieure Big Data & Marketing Digital — Profil data/SEO, visualisation & automatisation</div>
+      <div id="subtitle" class="subtitle">Ingénieure Big Data & Marketing Digital — Profil data/SEO, visualisation & automatisation</div>
     </header>
 
     <section class="hero">
       <div class="avatar-card">
         <img class="photo" src="./assets/photo_Bo.png" alt="Bo Deloison" />
-        <p class="about">Curieuse, rigoureuse et créative, j’aime transformer les données en décisions concrètes. J’allie <strong>analyse</strong>, <strong>SEO</strong> et <strong>visualisation</strong> pour livrer des résultats mesurables. Premiers défis recherchés à partir de <strong>janvier 2026</strong>.</p>
+        <p id="about" class="about">Curieuse, rigoureuse et créative, j’aime transformer les données en décisions concrètes. J’allie <strong>analyse</strong>, <strong>SEO</strong> et <strong>visualisation</strong> pour livrer des résultats mesurables. Premiers défis recherchés à partir de <strong>janvier 2026</strong>.</p>
         <div class="cta-row">
-          <a class="btn" href="mailto:bodeloison8@gmail.com">Me contacter</a>
-          <a class="btn secondary" href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="btn secondary" href="#stages">Expériences</a>
+          <a id="btn-contact" class="btn" href="mailto:bodeloison8@gmail.com">Me contacter</a>
+          <a id="btn-linkedin" class="btn secondary" href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a id="btn-exp" class="btn secondary" href="#stages">Expériences</a>
         </div>
       </div>
     </section>
 
     <!-- STAGES : cartes visibles directement -->
     <section id="stages">
-      <h2 class="section-title">Stages</h2>
+      <h2 id="stages-title" class="section-title">Stages</h2>
       <div class="stage-stack">
         <div class="card stage-card">
           <div>
             <img class="logo" src="./assets/Papernest.png" alt="Papernest"/>
-            <h3>Barcelone — Junior Data & SEO Project Manager</h3>
-            <p>Stage de fin d’études (Juin – Déc 2025). KPIs marketing & SEO, automatisations et dashboards pour les équipes Growth.</p>
-            <ul class="list">
+            <h3 id="bcn-title">Barcelone — Junior Data & SEO Project Manager</h3>
+            <p id="bcn-desc">Stage de fin d’études (Juin – Déc 2025). KPIs marketing & SEO, automatisations et dashboards pour les équipes Growth.</p>
+            <ul id="bcn-bullets" class="list">
               <li>Dashboards unifiés (Chart.js, Looker Studio)</li>
               <li>Data pipeline (Python/SQL, BigQuery/MySQL), QA & alertes</li>
               <li>Audits SEO on‑page/off‑page, suivi ranking</li>
@@ -92,9 +113,9 @@
         <div class="card stage-card">
           <div>
             <img class="logo" src="./assets/8inAsia.png" alt="8 IN ASIA"/>
-            <h3>Bali — Data & Marketing Digital</h3>
-            <p>Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète.</p>
-            <ul class="list">
+            <h3 id="bali-title">Bali — Data & Marketing Digital</h3>
+            <p id="bali-desc">Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète.</p>
+            <ul id="bali-bullets" class="list">
               <li>Audit sémantique & calendrier éditorial</li>
               <li>Conception UX des pages clés, A/B tests légers</li>
               <li>+10k abonnés en 3 mois (social)</li>
@@ -108,11 +129,11 @@
 
     <!-- COMPÉTENCES (sans illustrations) -->
     <section>
-      <h2 class="section-title">Compétences</h2>
+      <h2 id="skills-title" class="section-title">Compétences</h2>
       <div class="grid-2">
         <div class="card">
-          <h3>Tech</h3>
-          <ul class="list">
+          <h3 id="tech-heading">Tech</h3>
+          <ul id="tech-list" class="list">
             <li>Python (pandas), JavaScript</li>
             <li>SQL (BigQuery/MySQL)</li>
             <li>Data viz : Chart.js, Looker Studio</li>
@@ -120,8 +141,8 @@
           </ul>
         </div>
         <div class="card">
-          <h3>SEO & Automatisation</h3>
-          <ul class="list">
+          <h3 id="seo-heading">SEO & Automatisation</h3>
+          <ul id="seo-list" class="list">
             <li>Audit on/off‑page, maillage, contenu orienté intent</li>
             <li>Scrapers & reporting auto (veille, KPI)</li>
             <li>QA data, alertes, doc courte et claire</li>
@@ -133,19 +154,19 @@
 
     <!-- PROJETS D'ÉCOLE -->
     <section>
-      <h2 class="section-title">Projets d’école</h2>
+      <h2 id="projects-title" class="section-title">Projets d’école</h2>
       <div class="grid-2">
         <div class="card">
-          <h3>Recommandation d’articles (NLP/RAG)</h3>
-          <ul class="list">
+          <h3 id="proj1-title">Recommandation d’articles (NLP/RAG)</h3>
+          <ul id="proj1-list" class="list">
             <li>Indexation vectorielle + recherche sémantique</li>
             <li>Pipeline ingestion → embeddings → API</li>
             <li>Évaluation offline (MRR/Recall)</li>
           </ul>
         </div>
         <div class="card">
-          <h3>JO Paris 2024 — Prédiction de médailles</h3>
-          <ul class="list">
+          <h3 id="proj2-title">JO Paris 2024 — Prédiction de médailles</h3>
+          <ul id="proj2-list" class="list">
             <li>Features historiques, XGBoost/Random Forest, CV</li>
             <li>Dashboard de restitution pour non‑tech</li>
           </ul>
@@ -155,23 +176,23 @@
 
     <!-- ÉCOLES / FORMATION -->
     <section>
-      <h2 class="section-title">Écoles / Formation</h2>
+      <h2 id="edu-title" class="section-title">Écoles / Formation</h2>
       <div class="grid-2">
         <div class="card stage-card" style="grid-template-columns:1fr 120px">
           <div>
             <img class="logo" src="./assets/ESME_Sudria.png" alt="ESME"/>
-            <h3>ESME Sudria — Ingénierie</h3>
-            <p>Classe prépa intégrée + Cycle ingénieur. Parcours Big Data & IA, projets data/ML, gestion de projet.</p>
-            <div class="chips"><span class="chip">Python</span><span class="chip">ML</span><span class="chip">SQL</span></div>
+            <h3 id="esme-title">ESME Sudria — Ingénierie</h3>
+            <p id="esme-desc">Classe prépa intégrée + Cycle ingénieur. Parcours Big Data & IA, projets data/ML, gestion de projet.</p>
+            <div id="esme-chips" class="chips"><span class="chip">Python</span><span class="chip">ML</span><span class="chip">SQL</span></div>
           </div>
           <div></div>
         </div>
         <div class="card stage-card" style="grid-template-columns:1fr 120px">
           <div>
             <img class="logo" src="./assets/IST_Lisbon.png" alt="IST Lisbon"/>
-            <h3>IST Lisbonne — Exchange Program</h3>
-            <p>Semestre à l’Instituto Superior Técnico (2023–2024). Projets data/compute, équipes internationales.</p>
-            <div class="chips"><span class="chip">C++</span><span class="chip">Compute</span><span class="chip">Teamwork</span></div>
+            <h3 id="ist-title">IST Lisbonne — Exchange Program</h3>
+            <p id="ist-desc">Semestre à l’Instituto Superior Técnico (2023–2024). Projets data/compute, équipes internationales.</p>
+            <div id="ist-chips" class="chips"><span class="chip">C++</span><span class="chip">Compute</span><span class="chip">Teamwork</span></div>
           </div>
           <div></div>
         </div>
@@ -180,9 +201,9 @@
 
     <!-- LANGUES -->
     <section>
-      <h2 class="section-title">Langues</h2>
+      <h2 id="languages-title" class="section-title">Langues</h2>
       <div class="card">
-        <div class="chips">
+        <div id="lang-chips" class="chips">
           <span class="chip">🇫🇷 Français — natif</span>
           <span class="chip">🇬🇧 Anglais — avancé</span>
           <span class="chip">🇪🇸 Espagnol — intermédiaire</span>
@@ -192,9 +213,9 @@
 
     <!-- JOBS ÉTUDIANTS -->
     <section>
-      <h2 class="section-title">Jobs étudiants</h2>
+      <h2 id="jobs-title" class="section-title">Jobs étudiants</h2>
       <div class="card">
-        <ul class="list">
+        <ul id="jobs-list" class="list">
           <li><strong>Hôtesse événementielle — Roland‑Garros 2025 (BNP Paribas)</strong> · via Florence Doré · Paris · mai–juin 2025</li>
           <li><strong>Serveuse extra — Hôtel Fort Saint‑Laurent</strong> · Lyon · avr–mai 2025</li>
           <li><strong>Hôtesse — GL events</strong> (via agence Profil) · Lyon · déc 2021–juin 2024
@@ -213,14 +234,14 @@
 
     <!-- CONTACT -->
     <section>
-      <h2 class="section-title">Contact</h2>
+      <h2 id="contact-title" class="section-title">Contact</h2>
       <div class="card">
         <p><strong>Email :</strong> <a href="mailto:bodeloison8@gmail.com" style="text-decoration:none">bodeloison8@gmail.com</a> · <strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer" style="text-decoration:none">/in/bodeloison</a></p>
       </div>
     </section>
 
     <footer>
-      © <span id="yr"></span> Bo Deloison — CV interactif (sobre, noir & blanc & gris)
+      © <span id="yr"></span> Bo Deloison — CV interactif (FR/EN)
     </footer>
   </div>
 
@@ -243,6 +264,177 @@
       smallMap('map-bcn', [41.3874, 2.1686]);
       smallMap('map-bali', [-8.409518, 115.188919]);
     });
+
+    // ====== i18n FR/EN ======
+    const I18N = {
+      fr: {
+        subtitle: 'Ingénieure Big Data & Marketing Digital — Profil data/SEO, visualisation & automatisation',
+        about: 'Curieuse, rigoureuse et créative, j’aime transformer les données en décisions concrètes. J’allie <strong>analyse</strong>, <strong>SEO</strong> et <strong>visualisation</strong> pour livrer des résultats mesurables. Premiers défis recherchés à partir de <strong>janvier 2026</strong>.',
+        contact_btn: 'Me contacter', exp_btn: 'Expériences',
+        stages_title: 'Stages',
+        bcn_title: 'Barcelone — Junior Data & SEO Project Manager',
+        bcn_desc: 'Stage de fin d’études (Juin – Déc 2025). KPIs marketing & SEO, automatisations et dashboards pour les équipes Growth.',
+        bcn_bullets: [
+          'Dashboards unifiés (Chart.js, Looker Studio)',
+          'Data pipeline (Python/SQL, BigQuery/MySQL), QA & alertes',
+          'Audits SEO on‑page/off‑page, suivi ranking',
+          'Scrapers de veille & reporting auto'
+        ],
+        bali_title: 'Bali — Data & Marketing Digital',
+        bali_desc: 'Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète.',
+        bali_bullets: [
+          'Audit sémantique & calendrier éditorial',
+          'Conception UX des pages clés, A/B tests légers',
+          '+10k abonnés en 3 mois (social)',
+          'Suivi analytics & reporting hebdo'
+        ],
+        skills_title: 'Compétences', tech_heading: 'Tech', seo_heading: 'SEO & Automatisation',
+        tech_list: [ 'Python (pandas), JavaScript', 'SQL (BigQuery/MySQL)', 'Data viz : Chart.js, Looker Studio', 'WordPress/Divi, intégration front' ],
+        seo_list: [ 'Audit on/off‑page, maillage, contenu orienté intent', 'Scrapers & reporting auto (veille, KPI)', 'QA data, alertes, doc courte et claire', 'Orientation ROI, tests rapides' ],
+        projects_title: 'Projets d’école',
+        proj1_title: 'Recommandation d’articles (NLP/RAG)',
+        proj1_list: [ 'Indexation vectorielle + recherche sémantique', 'Pipeline ingestion → embeddings → API', 'Évaluation offline (MRR/Recall)' ],
+        proj2_title: 'JO Paris 2024 — Prédiction de médailles',
+        proj2_list: [ 'Features historiques, XGBoost/Random Forest, CV', 'Dashboard de restitution pour non‑tech' ],
+        edu_title: 'Écoles / Formation',
+        esme_title: 'ESME Sudria — Ingénierie',
+        esme_desc: 'Classe prépa intégrée + Cycle ingénieur. Parcours Big Data & IA, projets data/ML, gestion de projet.',
+        esme_chips: ['Python','ML','SQL'],
+        ist_title: 'IST Lisbonne — Exchange Program',
+        ist_desc: 'Semestre à l’Instituto Superior Técnico (2023–2024). Projets data/compute, équipes internationales.',
+        ist_chips: ['C++','Compute','Teamwork'],
+        languages_title: 'Langues',
+        lang_chips: ['🇫🇷 Français — natif','🇬🇧 Anglais — avancé','🇪🇸 Espagnol — intermédiaire'],
+        jobs_title: 'Jobs étudiants',
+        jobs_list_html: `
+          <li><strong>Hôtesse événementielle — Roland‑Garros 2025 (BNP Paribas)</strong> · via Florence Doré · Paris · mai–juin 2025</li>
+          <li><strong>Serveuse extra — Hôtel Fort Saint‑Laurent</strong> · Lyon · avr–mai 2025</li>
+          <li><strong>Hôtesse — GL events</strong> (via agence Profil) · Lyon · déc 2021–juin 2024
+            <ul class="list">
+              <li>Hôtesse VIP <strong>LOU Rugby</strong> (match‑day)</li>
+              <li>Hôtesse Skybox <strong>Chanel</strong> — The Amundi Evian Championship (07/2022)</li>
+              <li>Hôtesse <strong>OL</strong> (événements stade)</li>
+            </ul>
+          </li>
+          <li><strong>Figurante TV</strong> — Agence CASSANDRA · Paris · jan–juin 2024</li>
+          <li><strong>Professeure particulière (maths/physique)</strong> — Superprof · Lyon · sept 2021–juin 2022</li>
+          <li><strong>Emploi étudiant</strong> — McDonald’s · Caluire‑et‑Cuire · juil–août 2021</li>` ,
+        contact_title: 'Contact',
+        contact_btn_label: 'Me contacter'
+      },
+      en: {
+        subtitle: 'Data & Digital Marketing Engineer — Data/SEO profile, visualization & automation',
+        about: 'Curious, rigorous and creative, I turn data into decisions. I combine <strong>analysis</strong>, <strong>SEO</strong> and <strong>visualization</strong> to deliver measurable outcomes. Open to new challenges from <strong>January 2026</strong>.',
+        contact_btn: 'Contact me', exp_btn: 'Experience',
+        stages_title: 'Internships',
+        bcn_title: 'Barcelona — Junior Data & SEO Project Manager',
+        bcn_desc: 'Final‑year internship (Jun–Dec 2025). Marketing & SEO KPIs, automation and executive dashboards for Growth teams.',
+        bcn_bullets: [
+          'Unified dashboards (Chart.js, Looker Studio)',
+          'Data pipeline (Python/SQL, BigQuery/MySQL), QA & alerting',
+          'On‑page/off‑page SEO audits, ranking monitoring',
+          'Watch scrapers & automated reporting'
+        ],
+        bali_title: 'Bali — Data & Digital Marketing',
+        bali_desc: 'Internship (Jun–Aug 2024). Launched and optimized <em>voyageabali.com</em> (WordPress/Divi) with a full SEO strategy.',
+        bali_bullets: [
+          'Semantic audit & editorial calendar',
+          'UX for key pages, light A/B tests',
+          '+10k followers in 3 months (social)',
+          'Analytics tracking & weekly reporting'
+        ],
+        skills_title: 'Skills', tech_heading: 'Tech', seo_heading: 'SEO & Automation',
+        tech_list: [ 'Python (pandas), JavaScript', 'SQL (BigQuery/MySQL)', 'Data viz: Chart.js, Looker Studio', 'WordPress/Divi, light front‑end' ],
+        seo_list: [ 'On/Off‑page audits, internal linking, intent‑driven content', 'Scrapers & automated KPI reporting', 'Data QA, alerting, concise docs', 'ROI mindset, fast testing' ],
+        projects_title: 'School projects',
+        proj1_title: 'Scientific article recommendation (NLP/RAG)',
+        proj1_list: [ 'Vector indexing + semantic search', 'Clean pipeline: ingestion → embeddings → API', 'Offline evaluation (MRR/Recall)' ],
+        proj2_title: 'Paris 2024 Olympics — Medal prediction',
+        proj2_list: [ 'Historical features, XGBoost/Random Forest, CV', 'Executive dashboard for non‑technical users' ],
+        edu_title: 'Education',
+        esme_title: 'ESME Sudria — Engineering',
+        esme_desc: 'Integrated prep + engineering cycle. Big Data & AI track, data/ML projects, project management.',
+        esme_chips: ['Python','ML','SQL'],
+        ist_title: 'IST Lisbon — Exchange Program',
+        ist_desc: 'Semester at Instituto Superior Técnico (2023–2024). Data/compute projects, international teams.',
+        ist_chips: ['C++','Compute','Teamwork'],
+        languages_title: 'Languages',
+        lang_chips: ['🇫🇷 French — native','🇬🇧 English — advanced','🇪🇸 Spanish — intermediate'],
+        jobs_title: 'Student jobs',
+        jobs_list_html: `
+          <li><strong>Event Hostess — Roland‑Garros 2025 (BNP Paribas)</strong> · via Florence Doré · Paris · May–June 2025</li>
+          <li><strong>Waitress (extra shifts) — Hôtel Fort Saint‑Laurent</strong> · Lyon · Apr–May 2025</li>
+          <li><strong>Hostess — GL events</strong> (via Profil agency) · Lyon · Dec 2021–Jun 2024
+            <ul class="list">
+              <li>VIP Hostess <strong>LOU Rugby</strong> (match day)</li>
+              <li>Skybox Hostess <strong>Chanel</strong> — The Amundi Evian Championship (07/2022)</li>
+              <li>Hostess <strong>OL</strong> (stadium events)</li>
+            </ul>
+          </li>
+          <li><strong>TV Extra</strong> — Agence CASSANDRA · Paris · Jan–Jun 2024</li>
+          <li><strong>Private Tutor (Maths/Physics)</strong> — Superprof · Lyon · Sept 2021–Jun 2022</li>
+          <li><strong>Student Job</strong> — McDonald’s · Caluire‑et‑Cuire · Jul–Aug 2021</li>` ,
+        contact_title: 'Contact',
+        contact_btn_label: 'Contact me'
+      }
+    };
+
+    function renderList(el, items){ el.innerHTML = items.map(i=>`<li>${i}</li>`).join(''); }
+
+    function applyLang(lang){
+      const L = I18N[lang] || I18N.fr;
+      document.getElementById('subtitle').textContent = L.subtitle;
+      document.getElementById('about').innerHTML = L.about;
+      document.getElementById('btn-contact').textContent = L.contact_btn;
+      document.getElementById('btn-exp').textContent = L.exp_btn;
+
+      document.getElementById('stages-title').textContent = L.stages_title;
+      document.getElementById('bcn-title').textContent = L.bcn_title;
+      document.getElementById('bcn-desc').innerHTML = L.bcn_desc;
+      renderList(document.getElementById('bcn-bullets'), L.bcn_bullets);
+      document.getElementById('bali-title').textContent = L.bali_title;
+      document.getElementById('bali-desc').innerHTML = L.bali_desc;
+      renderList(document.getElementById('bali-bullets'), L.bali_bullets);
+
+      document.getElementById('skills-title').textContent = L.skills_title;
+      document.getElementById('tech-heading').textContent = L.tech_heading;
+      document.getElementById('seo-heading').textContent = L.seo_heading;
+      renderList(document.getElementById('tech-list'), L.tech_list);
+      renderList(document.getElementById('seo-list'), L.seo_list);
+
+      document.getElementById('projects-title').textContent = L.projects_title;
+      document.getElementById('proj1-title').textContent = L.proj1_title;
+      renderList(document.getElementById('proj1-list'), L.proj1_list);
+      document.getElementById('proj2-title').textContent = L.proj2_title;
+      renderList(document.getElementById('proj2-list'), L.proj2_list);
+
+      document.getElementById('edu-title').textContent = L.edu_title;
+      document.getElementById('esme-title').textContent = L.esme_title;
+      document.getElementById('esme-desc').textContent = L.esme_desc;
+      document.getElementById('esme-chips').innerHTML = L.esme_chips.map(c=>`<span class='chip'>${c}</span>`).join('');
+      document.getElementById('ist-title').textContent = L.ist_title;
+      document.getElementById('ist-desc').textContent = L.ist_desc;
+      document.getElementById('ist-chips').innerHTML = L.ist_chips.map(c=>`<span class='chip'>${c}</span>`).join('');
+
+      document.getElementById('languages-title').textContent = L.languages_title;
+      document.getElementById('lang-chips').innerHTML = L.lang_chips.map(c=>`<span class='chip'>${c}</span>`).join('');
+
+      document.getElementById('jobs-title').textContent = L.jobs_title;
+      document.getElementById('jobs-list').innerHTML = L.jobs_list_html;
+
+      document.getElementById('contact-title').textContent = L.contact_title;
+      document.getElementById('btn-contact').textContent = L.contact_btn_label;
+
+      document.documentElement.lang = (lang==='en' ? 'en' : 'fr');
+      localStorage.setItem('lang', lang);
+    }
+
+    const sw = document.getElementById('langSwitch');
+    const saved = localStorage.getItem('lang') || 'fr';
+    sw.checked = (saved === 'en');
+    applyLang(saved);
+    sw.addEventListener('change', ()=> applyLang(sw.checked ? 'en' : 'fr'));
   </script>
 </body>
 </html>
+
