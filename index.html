@@ -3,11 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bo Deloison — CV (FR/EN)</title>
+  <title>Bo Deloison — CV Interactif (FR/EN)</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <!-- Leaflet (cartes mini) -->
   <link rel="preload" as="style" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" onload="this.onload=null;this.rel='stylesheet'">
-  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" onerror="window.__NO_MAP__=true"></script>
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     :root{ --bg:#ffffff; --text:#111113; --muted:#555a61; --line:#e7e8ea; --card:#f7f8fa; --chip:#eeeeee; --shadow:0 8px 24px rgba(17,17,19,.06); }
     *{box-sizing:border-box}
@@ -15,10 +14,10 @@
     a{color:var(--text);text-underline-offset:2px}
     .wrap{max-width:1120px;margin:0 auto;padding:28px}
 
+    /* Topbar with iOS-like language switch */
     .topbar{display:flex;justify-content:flex-end;align-items:center;margin-bottom:6px}
     .lang-toggle{display:flex;align-items:center;gap:10px}
     .lang-label{font-size:12px;color:var(--muted);font-weight:700}
-    /* iOS-like switch */
     .switch{position:relative;display:inline-block;width:56px;height:32px}
     .switch input{opacity:0;width:0;height:0}
     .slider{position:absolute;inset:0;cursor:pointer;background:#e9eaec;border:1px solid #cfd1d4;border-radius:999px;transition:.25s}
@@ -27,32 +26,32 @@
     .switch input:checked + .slider:before{transform:translateX(24px)}
 
     header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:18px}
-    .name{font-size:30px;font-weight:800;letter-spacing:.2px;text-align:center}
+    .name{font-size:30px;font-weight:800;text-align:center}
     .subtitle{color:var(--muted);text-align:center}
 
     .hero{display:grid;place-items:center;margin:12px 0 28px}
     .avatar-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow);width:min(680px,100%);text-align:center}
-    .photo{width:220px;height:220px;border-radius:50%;object-fit:cover;border:3px solid var(--text);box-shadow:var(--shadow);display:block;margin:0 auto 14px}
+    .photo{width:220px;height:220px;border-radius:50%;object-fit:cover;border:3px solid var(--text);box-shadow:var(--shadow);margin:0 auto 14px}
     .about{color:var(--muted);max-width:560px;margin:0 auto}
     .cta-row{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
-    .btn{background:var(--text);color:#fff;padding:10px 14px;border-radius:12px;font-weight:700;border:1px solid var(--text);cursor:pointer;text-decoration:none}
-    .btn.secondary{background:#fff;color:var(--text);text-decoration:none}
+    .btn{background:var(--text);color:#fff;padding:10px 14px;border-radius:12px;font-weight:700;border:1px solid var(--text);text-decoration:none}
+    .btn.secondary{background:#fff;color:var(--text)}
 
     section{margin:28px 0}
     .section-title{font-size:18px;font-weight:800;margin:0 0 12px}
     .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
 
-    /* Stages : cartes + descriptifs (sans globe) */
+    /* Stages */
     .stage-stack{display:flex;flex-direction:column;gap:18px}
     .stage-card{display:grid;grid-template-columns:1fr 240px;gap:14px}
-    .stage-card h3{margin:4px 0 6px;font-size:16px}
+    .stage-card h3{margin:4px 0;font-size:16px}
     .stage-card p{margin:6px 0 0;color:var(--muted)}
     .logo{height:50px}
     .mini-map{height:200px;border-radius:12px;border:1px solid var(--line);overflow:hidden}
-    @media (max-width: 920px){ .stage-card{grid-template-columns:1fr} .mini-map{height:180px} }
+    @media (max-width:920px){.stage-card{grid-template-columns:1fr}.mini-map{height:180px}}
 
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    @media (max-width: 920px){ .grid-2{grid-template-columns:1fr} }
+    @media (max-width:920px){.grid-2{grid-template-columns:1fr}}
 
     .list{margin:0;padding-left:18px;color:var(--muted)}
     .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -63,6 +62,7 @@
 </head>
 <body>
   <div class="wrap">
+    <!-- Language switch -->
     <div class="topbar">
       <div class="lang-toggle" aria-label="Language switch" role="group">
         <span class="lang-label">FR</span>
@@ -76,36 +76,31 @@
 
     <header>
       <div class="name">Bo Deloison</div>
-      <div id="subtitle" class="subtitle">Ingénieure Big Data & Marketing Digital — Profil data/SEO, visualisation & automatisation</div>
+      <div id="subtitle" class="subtitle"></div>
     </header>
 
     <section class="hero">
       <div class="avatar-card">
         <img class="photo" src="./assets/photo_Bo.png" alt="Bo Deloison" />
-        <p id="about" class="about">Curieuse, rigoureuse et créative, j’aime transformer les données en décisions concrètes. J’allie <strong>analyse</strong>, <strong>SEO</strong> et <strong>visualisation</strong> pour livrer des résultats mesurables. Premiers défis recherchés à partir de <strong>janvier 2026</strong>.</p>
+        <p id="about" class="about"></p>
         <div class="cta-row">
-          <a id="btn-contact" class="btn" href="mailto:bodeloison8@gmail.com">Me contacter</a>
+          <a id="btn-contact" class="btn" href="mailto:bodeloison8@gmail.com"></a>
           <a id="btn-linkedin" class="btn secondary" href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a id="btn-exp" class="btn secondary" href="#stages">Expériences</a>
+          <a id="btn-exp" class="btn secondary" href="#stages"></a>
         </div>
       </div>
     </section>
 
-    <!-- STAGES : cartes visibles directement -->
+    <!-- STAGES -->
     <section id="stages">
-      <h2 id="stages-title" class="section-title">Stages</h2>
+      <h2 id="stages-title" class="section-title"></h2>
       <div class="stage-stack">
         <div class="card stage-card">
           <div>
             <img class="logo" src="./assets/Papernest.png" alt="Papernest"/>
-            <h3 id="bcn-title">Barcelone — Junior Data & SEO Project Manager</h3>
-            <p id="bcn-desc">Stage de fin d’études (Juin – Déc 2025). KPIs marketing & SEO, automatisations et dashboards pour les équipes Growth.</p>
-            <ul id="bcn-bullets" class="list">
-              <li>Dashboards unifiés (Chart.js, Looker Studio)</li>
-              <li>Data pipeline (Python/SQL, BigQuery/MySQL), QA & alertes</li>
-              <li>Audits SEO on‑page/off‑page, suivi ranking</li>
-              <li>Scrapers de veille & reporting auto</li>
-            </ul>
+            <h3 id="bcn-title"></h3>
+            <p id="bcn-desc"></p>
+            <ul id="bcn-bullets" class="list"></ul>
           </div>
           <div id="map-bcn" class="mini-map"></div>
         </div>
@@ -113,323 +108,403 @@
         <div class="card stage-card">
           <div>
             <img class="logo" src="./assets/8inAsia.png" alt="8 IN ASIA"/>
-            <h3 id="bali-title">Bali — Data & Marketing Digital</h3>
-            <p id="bali-desc">Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète.</p>
-            <ul id="bali-bullets" class="list">
-              <li>Audit sémantique & calendrier éditorial</li>
-              <li>Conception UX des pages clés, A/B tests légers</li>
-              <li>+10k abonnés en 3 mois (social)</li>
-              <li>Suivi analytics & reporting hebdo</li>
-            </ul>
+            <h3 id="bali-title"></h3>
+            <p id="bali-desc"></p>
+            <ul id="bali-bullets" class="list"></ul>
+            <p id="bali-note" style="margin-top: 8px; color: var(--muted)"></p>
           </div>
           <div id="map-bali" class="mini-map"></div>
         </div>
       </div>
     </section>
 
-    <!-- COMPÉTENCES (sans illustrations) -->
+    <!-- COMPÉTENCES -->
     <section>
-      <h2 id="skills-title" class="section-title">Compétences</h2>
+      <h2 id="skills-title" class="section-title"></h2>
       <div class="grid-2">
         <div class="card">
-          <h3 id="tech-heading">Tech</h3>
-          <ul id="tech-list" class="list">
-            <li>Python (pandas), JavaScript</li>
-            <li>SQL (BigQuery/MySQL)</li>
-            <li>Data viz : Chart.js, Looker Studio</li>
-            <li>WordPress/Divi, intégration front</li>
-          </ul>
+          <h3 id="tech-heading"></h3>
+          <ul id="tech-list" class="list"></ul>
         </div>
         <div class="card">
-          <h3 id="seo-heading">SEO & Automatisation</h3>
-          <ul id="seo-list" class="list">
-            <li>Audit on/off‑page, maillage, contenu orienté intent</li>
-            <li>Scrapers & reporting auto (veille, KPI)</li>
-            <li>QA data, alertes, doc courte et claire</li>
-            <li>Orientation ROI, tests rapides</li>
-          </ul>
+          <h3 id="mkt-heading"></h3>
+          <ul id="mkt-list" class="list"></ul>
         </div>
       </div>
     </section>
 
     <!-- PROJETS D'ÉCOLE -->
     <section>
-      <h2 id="projects-title" class="section-title">Projets d’école</h2>
+      <h2 id="projects-title" class="section-title"></h2>
       <div class="grid-2">
         <div class="card">
-          <h3 id="proj1-title">Recommandation d’articles (NLP/RAG)</h3>
-          <ul id="proj1-list" class="list">
-            <li>Indexation vectorielle + recherche sémantique</li>
-            <li>Pipeline ingestion → embeddings → API</li>
-            <li>Évaluation offline (MRR/Recall)</li>
-          </ul>
+          <h3 id="proj1-title"></h3>
+          <p id="proj1-sub" style="margin:6px 0;color:var(--muted)"></p>
+          <ul id="proj1-list" class="list"></ul>
         </div>
         <div class="card">
-          <h3 id="proj2-title">JO Paris 2024 — Prédiction de médailles</h3>
-          <ul id="proj2-list" class="list">
-            <li>Features historiques, XGBoost/Random Forest, CV</li>
-            <li>Dashboard de restitution pour non‑tech</li>
-          </ul>
+          <h3 id="proj2-title"></h3>
+          <p id="proj2-sub" style="margin:6px 0;color:var(--muted)"></p>
+          <ul id="proj2-list" class="list"></ul>
         </div>
       </div>
     </section>
 
-    <!-- ÉCOLES / FORMATION -->
+    <!-- FORMATION -->
     <section>
-      <h2 id="edu-title" class="section-title">Écoles / Formation</h2>
+      <h2 id="edu-title" class="section-title"></h2>
       <div class="grid-2">
         <div class="card stage-card" style="grid-template-columns:1fr 120px">
           <div>
             <img class="logo" src="./assets/ESME_Sudria.png" alt="ESME"/>
-            <h3 id="esme-title">ESME Sudria — Ingénierie</h3>
-            <p id="esme-desc">Classe prépa intégrée + Cycle ingénieur. Parcours Big Data & IA, projets data/ML, gestion de projet.</p>
-            <div id="esme-chips" class="chips"><span class="chip">Python</span><span class="chip">ML</span><span class="chip">SQL</span></div>
+            <h3 id="esme-title"></h3>
+            <p id="esme-desc"></p>
+            <div id="esme-chips" class="chips"></div>
           </div>
-          <div></div>
         </div>
         <div class="card stage-card" style="grid-template-columns:1fr 120px">
           <div>
             <img class="logo" src="./assets/IST_Lisbon.png" alt="IST Lisbon"/>
-            <h3 id="ist-title">IST Lisbonne — Exchange Program</h3>
-            <p id="ist-desc">Semestre à l’Instituto Superior Técnico (2023–2024). Projets data/compute, équipes internationales.</p>
-            <div id="ist-chips" class="chips"><span class="chip">C++</span><span class="chip">Compute</span><span class="chip">Teamwork</span></div>
+            <h3 id="ist-title"></h3>
+            <p id="ist-desc"></p>
+            <div id="ist-chips" class="chips"></div>
           </div>
-          <div></div>
         </div>
       </div>
     </section>
 
     <!-- LANGUES -->
     <section>
-      <h2 id="languages-title" class="section-title">Langues</h2>
+      <h2 id="languages-title" class="section-title"></h2>
       <div class="card">
-        <div id="lang-chips" class="chips">
-          <span class="chip">🇫🇷 Français — natif</span>
-          <span class="chip">🇬🇧 Anglais — avancé</span>
-          <span class="chip">🇪🇸 Espagnol — intermédiaire</span>
-        </div>
+        <div id="lang-chips" class="chips"></div>
       </div>
     </section>
 
-    <!-- JOBS ÉTUDIANTS -->
+    <!-- JOBS -->
     <section>
-      <h2 id="jobs-title" class="section-title">Jobs étudiants</h2>
+      <h2 id="jobs-title" class="section-title"></h2>
       <div class="card">
-        <ul id="jobs-list" class="list">
-          <li><strong>Hôtesse événementielle — Roland‑Garros 2025 (BNP Paribas)</strong> · via Florence Doré · Paris · mai–juin 2025</li>
-          <li><strong>Serveuse extra — Hôtel Fort Saint‑Laurent</strong> · Lyon · avr–mai 2025</li>
-          <li><strong>Hôtesse — GL events</strong> (via agence Profil) · Lyon · déc 2021–juin 2024
-            <ul class="list">
-              <li>Hôtesse VIP <strong>LOU Rugby</strong> (match‑day)</li>
-              <li>Hôtesse Skybox <strong>Chanel</strong> — The Amundi Evian Championship (07/2022)</li>
-              <li>Hôtesse <strong>OL</strong> (événements stade)</li>
-            </ul>
-          </li>
-          <li><strong>Figurante TV</strong> — Agence CASSANDRA · Paris · jan–juin 2024</li>
-          <li><strong>Professeure particulière (maths/physique)</strong> — Superprof · Lyon · sept 2021–juin 2022</li>
-          <li><strong>Emploi étudiant</strong> — McDonald’s · Caluire‑et‑Cuire · juil–août 2021</li>
-        </ul>
+        <ul id="jobs-list" class="list" style="padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 14px;"></ul>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section>
-      <h2 id="contact-title" class="section-title">Contact</h2>
+      <h2 id="contact-title" class="section-title"></h2>
       <div class="card">
-        <p><strong>Email :</strong> <a href="mailto:bodeloison8@gmail.com" style="text-decoration:none">bodeloison8@gmail.com</a> · <strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer" style="text-decoration:none">/in/bodeloison</a></p>
+        <p><strong>Email :</strong> <a href="mailto:bodeloison8@gmail.com">bodeloison8@gmail.com</a> · <strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/bodeloison" target="_blank" rel="noreferrer">/in/bodeloison</a></p>
       </div>
     </section>
 
     <footer>
-      © <span id="yr"></span> Bo Deloison — CV interactif (FR/EN)
+      © <span id="yr"></span> - Bo Deloison
     </footer>
   </div>
 
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    // Cartes mini (Leaflet)
+    // Small maps
     function smallMap(id, coords){
-      if(window.__NO_MAP__ || typeof L==='undefined'){
-        const el = document.getElementById(id);
-        if(el) el.outerHTML = '<div class="mini-map" style="display:flex;align-items:center;justify-content:center;background:#fff">Carte non chargée</div>';
-        return;
-      }
-      const m = L.map(id, { zoomControl:false, dragging:false, scrollWheelZoom:false, doubleClickZoom:false, boxZoom:false, keyboard:false }).setView(coords, 5);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }).addTo(m);
+      if(typeof L==='undefined'){return;}
+      const m = L.map(id,{zoomControl:false,dragging:false,scrollWheelZoom:false}).setView(coords,5);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap'}).addTo(m);
       L.marker(coords).addTo(m);
     }
-
-    window.addEventListener('load', ()=>{
-      smallMap('map-bcn', [41.3874, 2.1686]);
-      smallMap('map-bali', [-8.409518, 115.188919]);
+    window.addEventListener('load',()=>{
+      smallMap('map-bcn',[41.3874,2.1686]);
+      smallMap('map-bali',[-8.409518,115.188919]);
     });
 
-    // ====== i18n FR/EN ======
+    // ========= Content (FR / EN) =========
     const I18N = {
       fr: {
-        subtitle: 'Ingénieure Big Data & Marketing Digital — Profil data/SEO, visualisation & automatisation',
-        about: 'Curieuse, rigoureuse et créative, j’aime transformer les données en décisions concrètes. J’allie <strong>analyse</strong>, <strong>SEO</strong> et <strong>visualisation</strong> pour livrer des résultats mesurables. Premiers défis recherchés à partir de <strong>janvier 2026</strong>.',
-        contact_btn: 'Me contacter', exp_btn: 'Expériences',
+        subtitle: 'Ingénieure Big Data & Marketing Digital — Analyse, visualisation, automatisation.',
+        about: `J’aime <strong>donner du sens</strong> aux données. Grâce à l’analyse, à la stratégie et à la visualisation, je transforme les chiffres en décisions concrètes. <strong>Déterminée</strong> et <strong>enthousiaste</strong>, je cherche mon premier emploi dès <strong>janvier 2026</strong>.`,
+        contact_btn: 'Me contacter',
+        exp_btn: 'Expériences',
+
         stages_title: 'Stages',
         bcn_title: 'Barcelone — Junior Data & SEO Project Manager',
-        bcn_desc: 'Stage de fin d’études (Juin – Déc 2025). KPIs marketing & SEO, automatisations et dashboards pour les équipes Growth.',
+        bcn_desc: `Stage de fin d’études (Juin – Déc 2025) chez Papernest, scale-up de la French Tech. Analyse de KPIs, automatisation de reportings et visualisation de données pour l’équipe Growth France, en collaboration avec les équipes Espagne et Italie.`,
         bcn_bullets: [
-          'Dashboards unifiés (Chart.js, Looker Studio)',
-          'Data pipeline (Python/SQL, BigQuery/MySQL), QA & alertes',
-          'Audits SEO on‑page/off‑page, suivi ranking',
-          'Scrapers de veille & reporting auto'
+          'Création de dashboards stratégiques (Chart.js, HTML, Looker Studio, Apps Script)',
+          'Automatisations via Python/SQL/JavaScript pour extraction, mises à jour et alertes',
+          'Suivi SEO : audit technique, reporting GSC, coordination Tech & Contenu',
+          'Bases de données : MySQL, BigQuery',
+          'Travail quotidien avec des équipes produit, marketing et contenu internationales'
         ],
         bali_title: 'Bali — Data & Marketing Digital',
-        bali_desc: 'Stage (Juin – Août 2024). Lancement et optimisation de <em>voyageabali.com</em> (WordPress/Divi) avec une stratégie SEO complète. Expérience sans doute la plus formatrice et bienveillante de ma vie : j’y ai énormément appris (autonomie, sens du service, adaptation).',
+        bali_desc: `Stage (Juin – Août 2024) au sein de l’agence 8 IN ASIA. Missions polyvalentes en marketing digital, gestion de contenu et accompagnement client.`,
         bali_bullets: [
-          'Semantic audit & editorial calendar',
-          'UX for key pages, light A/B tests',
-          '+10k followers in 3 months (social)',
-          'Analytics tracking & weekly reporting',
-          'Supporting travelers with activities (advice, bookings, logistics)'
+          'Audit sémantique & élaboration du calendrier éditorial',
+          'Création du site <em>voyageabali.com</em> sous WordPress (Divi)',
+          'Optimisation SEO on-page et off-page',
+          'Suivi analytics (GA4, GSC) & reporting hebdomadaire',
+          'Animation des réseaux sociaux (+10k abonnés en 3 mois)',
+          'Accompagnement des voyageurs pour les activités (conseils, réservations, logistique)'
         ],
-        skills_title: 'Compétences', tech_heading: 'Compétences techniques', seo_heading: 'SEO & Automatisation',
-        tech_list: [ 'Langages : Python, SQL, C (notions), Git', 'Data visualisation : Power BI, Looker Studio', 'Outils marketing : Google Analytics, Google Tag Manager', 'Machine Learning : scikit‑learn, XGBoost, LightGBM, TensorFlow, PyTorch', 'NLP / LLM : Hugging Face, LangChain, GPT‑4, Prompt Engineering', 'Data Engineering : Spark, Kafka, Hadoop', 'Bases de données : PostgreSQL, MongoDB, BigQuery', 'Cloud & outils : notions AWS' ],
-        seo_list: [ 'Audit on/off‑page, maillage, contenu orienté intent', 'Scrapers & reporting auto (veille, KPI)', 'QA data, alertes, doc courte et claire', 'Orientation ROI, tests rapides' ],
+        bali_note: '🌟 Une des plus belles expériences de ma vie.',
+
+        skills_title: 'Compétences',
+        tech_heading: 'Techniques',
+        tech_list: [
+          'Langages : Python, SQL, C (notions), Git',
+          'Data visualisation : Power BI, Looker Studio',
+          'Outils marketing : Google Analytics, Google Tag Manager',
+          'Machine Learning : scikit-learn, XGBoost, LightGBM, TensorFlow, PyTorch',
+          'NLP / LLM : Hugging Face, LangChain, GPT-4, Prompt Engineering',
+          'Data Engineering : Spark, Kafka, Hadoop',
+          'Bases de données : PostgreSQL, MongoDB, BigQuery',
+          'Cloud & outils : notions AWS'
+        ],
+        mkt_heading: 'Marketing digital',
+        mkt_list: [
+          'Google Search Console',
+          'Looker Studio (Data Studio)',
+          'Google Analytics 4 & Google Tag Manager',
+          'Ahrefs / Semrush',
+          'Notion (gestion contenu/process)',
+          'Suivi UTM & reporting',
+          'A/B testing léger'
+        ],
+
         projects_title: 'Projets d’école',
-        proj1_title: 'Recommandation d’articles (NLP/RAG)',
-        proj1_list: [ 'Développement d’un chatbot basé sur un LLM et un système RAG hybride pour des recommandations pertinentes', 'Optimisation du pipeline RAG pour la recherche d’information à l’aide de modèles d’embeddings et de recherche vectorielle', 'Entraînement et fine‑tuning du LLM pour améliorer la pertinence et l’alignement des réponses aux besoins utilisateurs' ],
-        proj2_title: 'JO Paris 2024 — Prédiction de médailles',
-        proj2_list: [ 'Collecte, nettoyage et stockage des performances sportives passées', 'Développement de modèles prédictifs en Python', 'Rapports automatisés et tableaux de bord interactifs pour l’analyse des tendances' ],
+        proj1_title: 'Projet de fin d’études : Système de recommandation d’articles scientifiques',
+        proj1_sub: 'Oct 2024 – Présent · (NLP & IA) — ESME',
+        proj1_list: [
+          'Développement d’un chatbot basé sur un LLM et un système RAG hybride',
+          'Optimisation du pipeline RAG (embeddings, recherche vectorielle)',
+          'Fine-tuning du LLM pour améliorer la pertinence et l’alignement'
+        ],
+        proj2_title: 'Projet : Prédiction des résultats aux Jeux Olympiques 2024',
+        proj2_sub: 'Fév – Juin 2024 · ESME',
+        proj2_list: [
+          'Scraping et automatisation de la collecte de données sportives',
+          'Nettoyage, préparation et stockage des performances passées',
+          'Modèles prédictifs en Python ; rapports automatisés et dashboards'
+        ],
+
         edu_title: 'Écoles / Formation',
         esme_title: 'ESME Sudria — Ingénierie',
-        esme_desc: 'Classe prépa intégrée + Cycle ingénieur. Parcours Big Data & IA, projets data/ML, gestion de projet.',
+        esme_desc: 'Classe préparatoire intégrée + Cycle ingénieur. Parcours Big Data & IA, projets data/ML, gestion de projet, marketing digital.',
         esme_chips: ['Python','ML','SQL'],
         ist_title: 'IST Lisbonne — Exchange Program',
         ist_desc: 'Semestre à l’Instituto Superior Técnico (2023–2024). Projets data/compute, équipes internationales.',
         ist_chips: ['C++','Compute','Teamwork'],
+
         languages_title: 'Langues',
         lang_chips: ['🇫🇷 Français — natif','🇬🇧 Anglais — avancé','🇪🇸 Espagnol — intermédiaire'],
+
         jobs_title: 'Jobs étudiants',
         jobs_list_html: `
-          <li><strong>Hôtesse événementielle — Roland‑Garros 2025 (BNP Paribas)</strong> · via Florence Doré · Paris · mai–juin 2025</li>
-          <li><strong>Serveuse extra — Hôtel Fort Saint‑Laurent</strong> · Lyon · avr–mai 2025</li>
-          <li><strong>Hôtesse — GL events</strong> (via agence Profil) · Lyon · déc 2021–juin 2024
-            <ul class="list">
-              <li>Hôtesse VIP <strong>LOU Rugby</strong> (match‑day)</li>
-              <li>Hôtesse Skybox <strong>Chanel</strong> — The Amundi Evian Championship (07/2022)</li>
-              <li>Hôtesse <strong>OL</strong> (événements stade)</li>
-            </ul>
+          <li><strong>🎾 Hôtesse événementielle — Roland-Garros 2025 (BNP Paribas)</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">via Florence Doré · Paris · mai–juin 2025</span>
           </li>
-          <li><strong>Figurante TV</strong> — Agence CASSANDRA · Paris · jan–juin 2024</li>
-          <li><strong>Professeure particulière (maths/physique)</strong> — Superprof · Lyon · sept 2021–juin 2022</li>
-          <li><strong>Emploi étudiant</strong> — McDonald’s · Caluire‑et‑Cuire · juil–août 2021</li>` ,
+          <li><strong>🍽️ Serveuse extra — Hôtel Fort Saint-Laurent</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">Lyon · avr–mai 2025</span>
+          </li>
+          <li><strong>🏟️ Hôtesse — GL events</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">via agence Profil · Lyon · déc 2021–juin 2024</span>
+              <ul class="list" style="margin-top: 6px;">
+                <li>Hôtesse VIP <strong>LOU Rugby</strong></li>
+                <li>Hôtesse Skybox <strong>Chanel</strong> — Amundi Evian Championship (2022)</li>
+                <li>Hôtesse VIP <strong>OL</strong></li>
+              </ul>
+          </li>
+          <li><strong>📺 Figurante TV — Agence CASSANDRA</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">Paris · jan–juin 2024</span>
+          </li>
+          <li><strong>📚 Professeure particulière (maths/physique)</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">Superprof · Lyon · sept 2021–juin 2022</span>
+          </li>
+          <li><strong>🍔 Équipière polyvalente — McDonald’s</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">Caluire-et-Cuire · juil–août 2021</span>
+          </li>
+        `,
+
         contact_title: 'Contact',
         contact_btn_label: 'Me contacter'
       },
+
       en: {
-        subtitle: 'Data & Digital Marketing Engineer — Data/SEO profile, visualization & automation',
-        about: 'Curious, rigorous and creative, I turn data into decisions. I combine <strong>analysis</strong>, <strong>SEO</strong> and <strong>visualization</strong> to deliver measurable outcomes. Open to new challenges from <strong>January 2026</strong>.',
-        contact_btn: 'Contact me', exp_btn: 'Experience',
+        subtitle: 'Data & Digital Marketing Engineer — Analytics, visualization, automation.',
+        about: `I love <strong>turning data into insight</strong>. With analytics, strategy and visualization, I translate numbers into decisions. <strong>Driven</strong> and <strong>positive</strong>, I’m looking for my first full-time role from <strong>January 2026</strong>.`,
+        contact_btn: 'Contact me',
+        exp_btn: 'Experience',
+
         stages_title: 'Internships',
         bcn_title: 'Barcelona — Junior Data & SEO Project Manager',
-        bcn_desc: 'Final‑year internship (Jun–Dec 2025). Marketing & SEO KPIs, automation and executive dashboards for Growth teams.',
+        bcn_desc: `Final-year internship (Jun–Dec 2025) at Papernest (French Tech scale-up). KPI analysis, automated reporting and data visualization for the Growth team, in close collaboration with Spain and Italy.`,
         bcn_bullets: [
-          'Unified dashboards (Chart.js, Looker Studio)',
-          'Data pipeline (Python/SQL, BigQuery/MySQL), QA & alerting',
-          'On‑page/off‑page SEO audits, ranking monitoring',
-          'Watch scrapers & automated reporting'
+          'Executive dashboards (Chart.js, HTML, Looker Studio, Apps Script)',
+          'Automations with Python/SQL/JavaScript (extraction, refresh, alerting)',
+          'SEO monitoring: technical audits, GSC reporting, Tech & Content coordination',
+          'Databases: MySQL, BigQuery',
+          'Daily collaboration with product, marketing and content teams'
         ],
         bali_title: 'Bali — Data & Digital Marketing',
-        bali_desc: 'Internship (Jun–Aug 2024). Launched and optimized <em>voyageabali.com</em> (WordPress/Divi) with a full SEO strategy. Without a doubt the most formative and kind experience of my life — I learned a great deal (autonomy, customer care, adaptability).',
+        bali_desc: `Internship (Jun–Aug 2024) at 8 IN ASIA agency. Hands-on digital marketing, content management and client support.`,
         bali_bullets: [
           'Semantic audit & editorial calendar',
-          'UX for key pages, light A/B tests',
-          '+10k followers in 3 months (social)',
-          'Analytics tracking & weekly reporting'
+          'Built <em>voyageabali.com</em> on WordPress (Divi)',
+          'On-page and off-page SEO',
+          'Analytics tracking (GA4, GSC) & weekly reporting',
+          'Social growth: +10k followers in 3 months',
+          'Helped travelers book activities (advice, bookings, logistics)'
         ],
-        skills_title: 'Skills', tech_heading: 'Technical skills', seo_heading: 'SEO & Automation',
-        tech_list: [ 'Languages: Python, SQL, C (basics), Git', 'Data visualization: Power BI, Looker Studio', 'Marketing tools: Google Analytics, Google Tag Manager', 'Machine Learning: scikit‑learn, XGBoost, LightGBM, TensorFlow, PyTorch', 'NLP / LLM: Hugging Face, LangChain, GPT‑4, Prompt Engineering', 'Data Engineering: Spark, Kafka, Hadoop', 'Databases: PostgreSQL, MongoDB, BigQuery', 'Cloud & tooling: basic AWS' ],
-        seo_list: [ 'On/Off‑page audits, internal linking, intent‑driven content', 'Scrapers & automated KPI reporting', 'Data QA, alerting, concise docs', 'ROI mindset, fast testing' ],
+        bali_note: '🌟 One of the most meaningful experiences of my life.',
+
+        skills_title: 'Skills',
+        tech_heading: 'Technical',
+        tech_list: [
+          'Languages: Python, SQL, C (basics), Git',
+          'Data viz: Power BI, Looker Studio',
+          'Marketing tools: Google Analytics, Google Tag Manager',
+          'Machine Learning: scikit-learn, XGBoost, LightGBM, TensorFlow, PyTorch',
+          'NLP / LLM: Hugging Face, LangChain, GPT-4, Prompt Engineering',
+          'Data Engineering: Spark, Kafka, Hadoop',
+          'Databases: PostgreSQL, MongoDB, BigQuery',
+          'Cloud & tooling: basic AWS'
+        ],
+        mkt_heading: 'Digital Marketing',
+        mkt_list: [
+          'Google Search Console',
+          'Looker Studio (Data Studio)',
+          'Google Analytics 4 & Google Tag Manager',
+          'Ahrefs / Semrush',
+          'Notion (content/process management)',
+          'UTM tracking & reporting',
+          'Light A/B testing'
+        ],
+
         projects_title: 'School projects',
-        proj1_title: 'Scientific article recommendation (NLP/RAG)',
-        proj1_list: [ 'Built a chatbot on top of an LLM with a hybrid RAG system for relevant recommendations', 'Optimised the RAG pipeline for information retrieval using embedding models and vector search', 'Trained and fine‑tuned the LLM to improve response relevance and alignment with user needs' ],
-        proj2_title: 'Paris 2024 Olympics — Medal prediction',
-        proj2_list: [ 'Collected, cleaned and stored historical sports performance data', 'Developed predictive models in Python', 'Automated reports and interactive dashboards for trend analysis' ],
+        proj1_title: 'Capstone: Scientific article recommendation system',
+        proj1_sub: 'Oct 2024 – Present · (NLP & AI) — ESME',
+        proj1_list: [
+          'Chatbot on top of an LLM with a hybrid RAG system',
+          'RAG pipeline optimization (embeddings, vector search)',
+          'LLM fine-tuning to improve relevance and alignment'
+        ],
+        proj2_title: 'Project: Predicting Paris 2024 Olympic results',
+        proj2_sub: 'Feb – Jun 2024 · ESME',
+        proj2_list: [
+          'Scraping + automated collection of sports data',
+          'Cleaning, preparation and storage of historical performance',
+          'Predictive models in Python; automated reports & dashboards'
+        ],
+
         edu_title: 'Education',
         esme_title: 'ESME Sudria — Engineering',
-        esme_desc: 'Integrated prep + engineering cycle. Big Data & AI track, data/ML projects, project management.',
+        esme_desc: 'Integrated prep + engineering cycle. Big Data & AI track, data/ML projects, project management, digital marketing.',
         esme_chips: ['Python','ML','SQL'],
         ist_title: 'IST Lisbon — Exchange Program',
         ist_desc: 'Semester at Instituto Superior Técnico (2023–2024). Data/compute projects, international teams.',
         ist_chips: ['C++','Compute','Teamwork'],
+
         languages_title: 'Languages',
         lang_chips: ['🇫🇷 French — native','🇬🇧 English — advanced','🇪🇸 Spanish — intermediate'],
+
         jobs_title: 'Student jobs',
         jobs_list_html: `
-          <li><strong>Event Hostess — Roland‑Garros 2025 (BNP Paribas)</strong> · via Florence Doré · Paris · May–June 2025</li>
-          <li><strong>Waitress (extra shifts) — Hôtel Fort Saint‑Laurent</strong> · Lyon · Apr–May 2025</li>
-          <li><strong>Hostess — GL events</strong> (via Profil agency) · Lyon · Dec 2021–Jun 2024
-            <ul class="list">
-              <li>VIP Hostess <strong>LOU Rugby</strong> (match day)</li>
-              <li>Skybox Hostess <strong>Chanel</strong> — The Amundi Evian Championship (07/2022)</li>
-              <li>Hostess <strong>OL</strong> (stadium events)</li>
-            </ul>
+          <li><strong>🎾 Event Hostess — Roland-Garros 2025 (BNP Paribas)</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">via Florence Doré · Paris · May–June 2025</span>
           </li>
-          <li><strong>TV Extra</strong> — Agence CASSANDRA · Paris · Jan–Jun 2024</li>
-          <li><strong>Private Tutor (Maths/Physics)</strong> — Superprof · Lyon · Sept 2021–Jun 2022</li>
-          <li><strong>Student Job</strong> — McDonald’s · Caluire‑et‑Cuire · Jul–Aug 2021</li>` ,
+          <li><strong>🍽️ Waitress (extra shifts) — Hôtel Fort Saint-Laurent</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">Lyon · Apr–May 2025</span>
+          </li>
+          <li><strong>🏟️ Hostess — GL events</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">via Profil agency · Lyon · Dec 2021–Jun 2024</span>
+              <ul class="list" style="margin-top: 6px;">
+                <li>VIP Hostess <strong>LOU Rugby</strong></li>
+                <li>Skybox Hostess <strong>Chanel</strong> — Amundi Evian Championship (2022)</li>
+                <li>VIP Hostess <strong>OL</strong></li>
+              </ul>
+          </li>
+          <li><strong>📺 TV Extra — Agence CASSANDRA</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">Paris · Jan–Jun 2024</span>
+          </li>
+          <li><strong>📚 Private Tutor (Maths/Physics)</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">Superprof · Lyon · Sept 2021–Jun 2022</span>
+          </li>
+          <li><strong>🍔 Crew Member — McDonald’s</strong><br>
+              <span style="color: var(--muted); font-size: 14px;">Caluire-et-Cuire · Jul–Aug 2021</span>
+          </li>
+        `,
+
         contact_title: 'Contact',
         contact_btn_label: 'Contact me'
       }
     };
 
+    // Helpers
     function renderList(el, items){ el.innerHTML = items.map(i=>`<li>${i}</li>`).join(''); }
+    function renderChips(el, items){ el.innerHTML = items.map(c=>`<span class="chip">${c}</span>`).join(''); }
 
     function applyLang(lang){
       const L = I18N[lang] || I18N.fr;
-      document.getElementById('subtitle').textContent = L.subtitle;
+
+      // Header / hero
+      document.getElementById('subtitle').innerHTML = L.subtitle;
       document.getElementById('about').innerHTML = L.about;
       document.getElementById('btn-contact').textContent = L.contact_btn;
       document.getElementById('btn-exp').textContent = L.exp_btn;
 
+      // Stages
       document.getElementById('stages-title').textContent = L.stages_title;
       document.getElementById('bcn-title').textContent = L.bcn_title;
       document.getElementById('bcn-desc').innerHTML = L.bcn_desc;
       renderList(document.getElementById('bcn-bullets'), L.bcn_bullets);
+
       document.getElementById('bali-title').textContent = L.bali_title;
       document.getElementById('bali-desc').innerHTML = L.bali_desc;
       renderList(document.getElementById('bali-bullets'), L.bali_bullets);
+      document.getElementById('bali-note').textContent = L.bali_note;
 
+      // Compétences
       document.getElementById('skills-title').textContent = L.skills_title;
       document.getElementById('tech-heading').textContent = L.tech_heading;
-      document.getElementById('seo-heading').textContent = L.seo_heading;
       renderList(document.getElementById('tech-list'), L.tech_list);
-      renderList(document.getElementById('seo-list'), L.seo_list);
+      document.getElementById('mkt-heading').textContent = L.mkt_heading;
+      renderList(document.getElementById('mkt-list'), L.mkt_list);
 
+      // Projets
       document.getElementById('projects-title').textContent = L.projects_title;
       document.getElementById('proj1-title').textContent = L.proj1_title;
+      document.getElementById('proj1-sub').textContent = L.proj1_sub;
       renderList(document.getElementById('proj1-list'), L.proj1_list);
       document.getElementById('proj2-title').textContent = L.proj2_title;
+      document.getElementById('proj2-sub').textContent = L.proj2_sub;
       renderList(document.getElementById('proj2-list'), L.proj2_list);
 
+      // Formation
       document.getElementById('edu-title').textContent = L.edu_title;
       document.getElementById('esme-title').textContent = L.esme_title;
       document.getElementById('esme-desc').textContent = L.esme_desc;
-      document.getElementById('esme-chips').innerHTML = L.esme_chips.map(c=>`<span class='chip'>${c}</span>`).join('');
+      renderChips(document.getElementById('esme-chips'), L.esme_chips);
       document.getElementById('ist-title').textContent = L.ist_title;
       document.getElementById('ist-desc').textContent = L.ist_desc;
-      document.getElementById('ist-chips').innerHTML = L.ist_chips.map(c=>`<span class='chip'>${c}</span>`).join('');
+      renderChips(document.getElementById('ist-chips'), L.ist_chips);
 
+      // Langues
       document.getElementById('languages-title').textContent = L.languages_title;
-      document.getElementById('lang-chips').innerHTML = L.lang_chips.map(c=>`<span class='chip'>${c}</span>`).join('');
+      renderChips(document.getElementById('lang-chips'), L.lang_chips);
 
+      // Jobs
       document.getElementById('jobs-title').textContent = L.jobs_title;
       document.getElementById('jobs-list').innerHTML = L.jobs_list_html;
 
+      // Contact
       document.getElementById('contact-title').textContent = L.contact_title;
       document.getElementById('btn-contact').textContent = L.contact_btn_label;
 
+      // html lang attr + persist
       document.documentElement.lang = (lang==='en' ? 'en' : 'fr');
       localStorage.setItem('lang', lang);
     }
 
+    // Init
     const sw = document.getElementById('langSwitch');
     const saved = localStorage.getItem('lang') || 'fr';
     sw.checked = (saved === 'en');
